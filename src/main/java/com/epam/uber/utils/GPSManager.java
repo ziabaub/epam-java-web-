@@ -1,0 +1,13 @@
+package com.epam.uber.utils;
+
+import com.epam.uber.entity.Location;
+
+import java.util.Random;
+
+public class GPSManager {
+    public Location getCurrentLocation (){
+        Random rand = new Random();
+        int zone = rand.nextInt(22);
+        return new Location(zone);
+    }
+}

@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'Caviar';
+    src: url("../fonts/Caviar/CaviarDreams.ttf");
+}
+
+.page {
+    margin: 0;
+    padding: 0;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: 'Caviar', serif;
+}
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    font-weight: 100;
+}
+
+.title a {
+    color: white;
+    font-size: 40px;
+}
+
+.title a:hover {
+    color: #a32ea3;
+}
+
+.wrapper_form {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(120, 120, 120, 0.7);
+    text-align: center;
+    padding-top: 30px;
+    box-sizing: border-box;
+    margin: 0 auto 20px;
+}
+
+.wrapper_form_order {
+    margin-right: 100px;
+    margin-left: auto;
+    width: 300px;
+    height: 450px;
+    background-color: rgba(120, 120, 120, 0.7);
+    text-align: center;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.log_input {
+    display: block;
+    border: 1px solid #000;
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px 0 10px 0;
+}
+
+.log_accept{
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin: 20px auto 0;
+    background-color: #60f3f3;
+    cursor: pointer;
+    border: 2px solid #60f3f3;
+    font-weight: bold;
+    color: #a32ea3;
+    font-family: 'Caviar', serif;
+}
+
+.log_button {
+    display: block;
+    width: 250px;
+    margin: 30px auto 0;
+    background-color: #60f3f3;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    border: 2px solid #60f3f3;
+    font-weight: bold;
+    color: #a32ea3;
+    font-family: 'Caviar', serif;
+}
+
+.log_button:hover {
+    background-color: #4e9690;
+}
+
+.reg_link {
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgba(120, 120, 120, 0.7);
+    text-align: center;
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+
+.reg_link .reg_button {
+    color: #a32ea3;
+    text-decoration: none;
+}
+
+.reg_link .reg_button:hover {
+    text-decoration: underline;
+}
+
+.reg_form {
+    background-color: rgba(120, 120, 120, 0.7);
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.reg_form input {
+    padding: 3px 0 3px 0;
+    border: none;
+    width: 100%;
+}
+
+.valid {
+    background-color: rgb(138, 219, 219);
+}
+
+.notValid {
+    background-color: #eca9bb;
+}
+
+.reg_form span {
+    display: block;
+    text-align: center;
+}
+
+.reg_form .reg_submit {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    color: #a32ea3;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.reg_form .active:hover {
+    background-color: rgb(138, 219, 219);
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.error {
+    display: block;
+    text-align: center;
+    background-color: rgba(240, 23, 192, 0.44);
+    width: 30%;
+    margin: 0 auto 1%;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.table_user table {
+    width: 40%;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    background-color: rgba(120, 120, 120, 0.7);
+    margin: 0 auto 30px;
+}
+
+.table_user table th, .table_user table td {
+    text-align: left;
+}
+
+.table_taxi_admin table {
+    width: 60%;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    background-color: rgba(120, 120, 120, 0.7);
+    margin: 0 auto 30px;
+}
+
+.table_taxi_admin table th, .table_taxi_admin table td {
+    text-align: left;
+}
+
+.table_user table td a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.table_user table td a:hover {
+    color: #de81df;
+    text-decoration: underline;
+}
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+.spinner {
+    height: 100vh;
+    opacity: 1;
+    position: relative;
+    transition: opacity linear 0.1s;
+}
+.spinner::before {
+    animation: 2s linear infinite spinner;
+    border: solid 3px #eee;
+    border-bottom-color: #ef6565;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    left: 50%;
+    opacity: inherit;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center;
+    width: 40px;
+    will-change: transform;
+}
+
+.cancel-button{
+    padding-top: 28%;
+}
+
+.status{
+    align-content: center;
+}
+

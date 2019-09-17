@@ -1,0 +1,116 @@
+.header {
+    background-color: rgba(120, 120, 120, 0.7);
+    text-align: center;
+    width: 98%;
+    color: white;
+    box-sizing: border-box;
+    margin: 0 auto 20px;
+    padding: 5px;
+}
+
+.top {
+    display: block;
+    margin-top: 0;
+}
+
+.hello_message {
+    margin-top: -20px;
+    float: right;
+}
+
+.register_login_a {
+    color: #a32ea3;
+    text-decoration: none;
+}
+
+.logout_a {
+    color: #60f3f3;
+    text-decoration: none;
+}
+
+.hello_message a:hover {
+    text-decoration: underline;
+}
+
+.hello_text {
+    margin-right: 5px;
+}
+
+.change_level {
+    float: left;
+    margin-top: -3%;
+}
+
+.change_level ul {
+    list-style: none;
+}
+
+.change_level li {
+    display: inline-block;
+}
+
+.change_level a {
+    color: white;
+    text-decoration: none;
+}
+
+.change_level a:hover {
+    color: #a32ea3;
+}
+
+.user_menu {
+    box-sizing: border-box;
+    padding-right: 20px;
+    padding-left: 0;
+    width: 98%;
+    background-color: rgba(120, 120, 120, 0.7);
+    margin: 0 auto 50px;
+
+}
+
+.user_menu ul {
+    padding-left: auto;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.user_menu a {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
+.user_menu a:hover {
+    color: #a32ea3;
+}
+
+.user_menu a .fa {
+    color: white;
+}
+
+.user_menu a .fa:hover {
+    text-decoration: underline;
+}
+
+.user_menu form {
+    font-size: 20px;
+    color: white;
+    border: 2px white;
+    margin: 0;
+}
+
+.user_menu label:hover {
+    color: #a32ea3;
+}
+
+.user_menu input {
+    border-color: white;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Caviar', serif;
+}
+
+.user_menu button .fa:hover {
+    color: #a32ea3;
+}
