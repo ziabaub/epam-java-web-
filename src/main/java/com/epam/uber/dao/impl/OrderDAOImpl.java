@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class OrderDAOImpl extends AbstractDAO<Order> {
@@ -75,7 +78,8 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
             ResultSet result = statement.executeQuery(sqlQuery);
             while (result.next()) {
                 int id = result.getInt(ID_COLUMN_LABEL);
-                Date date = result.getDate("date");
+                Date d = result.getDate("date");
+                LocalDateTime date = convertToLocalDateTime(d);
                 int currZone = result.getInt("current_zone");
                 int destinationZon = result.getInt("destination_zone");
                 int cost = result.getInt("cost");
@@ -119,6 +123,12 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         } catch (SQLException e) {
             throw new DAOException(e.getMessage(), e);
         }
+    }
+
+    public LocalDateTime convertToLocalDateTime(Date dateToConvert) {
+        return Instant.ofEpochMilli(dateToConvert.getTime())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
     }
 
 

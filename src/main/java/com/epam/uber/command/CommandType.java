@@ -2,8 +2,7 @@ package com.epam.uber.command;
 
 
 import com.epam.uber.command.admin.*;
-import com.epam.uber.command.client.AddFeedbackCommand;
-import com.epam.uber.command.client.CancelCommand;
+import com.epam.uber.command.client.ClientCancelOrderCommand;
 import com.epam.uber.command.client.OrderCommand;
 import com.epam.uber.command.common.ChangeLanguageCommand;
 import com.epam.uber.command.common.LoginCommand;
@@ -49,9 +48,8 @@ public enum CommandType {
     /**
      * Client Command
      */
-    CLIENT_ADD_FEEDBACK(new AddFeedbackCommand()),
     CLIENT_ORDER(new OrderCommand()),
-    CANCEL_ORDER(new CancelCommand()),
+    CANCEL_ORDER(new ClientCancelOrderCommand()),
 
     /**
      * no need database.

@@ -4,7 +4,7 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
 <fmt:bundle basename="page_content">
-    <fmt:message key="main.title" var="title"/>
+    <fmt:message key="menu.title" var="title"/>
 </fmt:bundle>
 <!DOCTYPE html>
 <html>

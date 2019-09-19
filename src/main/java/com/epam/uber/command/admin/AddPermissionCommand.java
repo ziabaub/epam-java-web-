@@ -5,11 +5,9 @@ import com.epam.uber.command.Page;
 import com.epam.uber.entity.user.Author;
 import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.service.impl.AuthorizationServiceImpl;
-import com.epam.uber.utils.HttpUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Connection;
 
 import static com.epam.uber.command.Page.ADD_TAXI_PAGE_PATH;
 import static com.epam.uber.utils.MessageManager.SUCCESS_MESSAGE_KEY;
@@ -21,8 +19,8 @@ public class AddPermissionCommand implements Command {
 
     @Override
     public Page execute(HttpServletRequest request) {
+        AuthorizationServiceImpl authorizationService = new AuthorizationServiceImpl();
         try {
-            init(request);
             String code = request.getParameter("code");
             boolean role = "admin".equals(request.getParameter("role"));
             Author author = new Author(code, role);
@@ -31,12 +29,9 @@ public class AddPermissionCommand implements Command {
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
             return new Page(Page.ERROR_PAGE_PATH, true);
+        } finally {
+            authorizationService.endService();
         }
-    }
-
-    private void init(HttpServletRequest request) {
-        Connection connection = HttpUtils.getStoredConnection(request);
-        this.authorizationService = new AuthorizationServiceImpl(connection);
     }
 
 }

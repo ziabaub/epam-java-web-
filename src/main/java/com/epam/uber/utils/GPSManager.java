@@ -5,7 +5,10 @@ import com.epam.uber.entity.Location;
 import java.util.Random;
 
 public class GPSManager {
-    public Location getCurrentLocation (){
+    private GPSManager() {
+    }
+
+    public static Location getCurrentLocation (){
         Random rand = new Random();
         int zone = rand.nextInt(22);
         return new Location(zone);

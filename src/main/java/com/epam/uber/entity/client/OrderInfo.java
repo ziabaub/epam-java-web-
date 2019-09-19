@@ -3,16 +3,17 @@ package com.epam.uber.entity.client;
 import com.epam.uber.entity.user.Entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class OrderInfo extends Entity implements Serializable {
-    private Date date;
+    private LocalDateTime date;
     private int clientZone;
     private int destinationZone;
     private int cost ;
 
-    public OrderInfo(int id, Date date, int clientZone , int destinationZone,int cost ) {
+    public OrderInfo(int id, LocalDateTime date, int clientZone , int destinationZone,int cost ) {
         super(id);
         this.date = date;
         this.clientZone = clientZone;
@@ -34,11 +35,11 @@ public class OrderInfo extends Entity implements Serializable {
         this.destinationZone = destinationZone;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

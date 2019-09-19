@@ -7,56 +7,52 @@ import com.epam.uber.entity.order.Order;
 import com.epam.uber.entity.user.Taxi;
 import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.service.impl.OrderServiceImpl;
-import com.epam.uber.utils.HttpUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
 
 import static com.epam.uber.command.Page.MAIN_PAGE_PATH;
 
 public class AcceptCommand implements Command {
 
     private static final Logger LOGGER = Logger.getLogger(AcceptCommand.class);
-    private OrderServiceImpl orderService;
 
 
     @Override
     public Page execute(HttpServletRequest request) {
+        OrderServiceImpl orderService = new OrderServiceImpl();
         try {
-            init(request);
-            HttpSession session = request.getSession();
+
             int orderId = Integer.parseInt(request.getParameter(ORDER_ID_ATTRIBUTE));
-            handleTraveler(orderId, request, session);
-            Order order = buildOrder(orderId, session);
-            orderService.update(order);
+            setOrderAttribute(orderId, request);
+            updateOrder(orderId, request, orderService);
             return new Page(MAIN_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
             return new Page(Page.ERROR_PAGE_PATH, true);
+        } finally {
+            orderService.endService();
         }
     }
 
-    private void handleTraveler(int id, HttpServletRequest request, HttpSession session) {
+    private void setOrderAttribute(int id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         int zone = Integer.parseInt(request.getParameter("order_destination"));
         int cost = Integer.parseInt(request.getParameter("order_cost"));
         OrderInfo traveler = new OrderInfo(id, zone, cost);
         session.setAttribute(TRAVELER_ATTRIBUTE, traveler);
     }
 
-    private Order buildOrder(int id, HttpSession session) throws ServiceException {
+    private void updateOrder(int id, HttpServletRequest request, OrderServiceImpl orderService) throws ServiceException {
+        HttpSession session = request.getSession();
         Taxi taxi = (Taxi) session.getAttribute(TAXI_ATTRIBUTE);
         Order order = orderService.getById(id);
         order.setTaxiId(taxi.getId());
         order.setStatus("under_process");
         session.setAttribute(ORDER_ATTRIBUTE, order);
-        return order;
+        orderService.update(order);
     }
 
-    private void init(HttpServletRequest request) {
-        Connection connection = HttpUtils.getStoredConnection(request);
-        this.orderService = new OrderServiceImpl(connection);
-    }
 
 }

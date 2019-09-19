@@ -136,4 +136,5 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
         params.add(id);
         return executeQuery(sqlQuery, params);
     }
+
 }

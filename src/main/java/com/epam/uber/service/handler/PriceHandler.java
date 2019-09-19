@@ -5,28 +5,27 @@ import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.service.impl.TariffServiceImpl;
 import com.epam.uber.utils.PriceCalculator;
 
-import java.sql.Connection;
 import java.time.LocalTime;
 
 public class PriceHandler {
-    private TariffServiceImpl tariffService;
     private int tariffId;
 
-    public PriceHandler(Connection connection) {
-        this.tariffService = new TariffServiceImpl(connection);
-    }
 
     public double getCurrPrice(int from, int to) throws ServiceException {
-        PriceCalculator calculator = new PriceCalculator();
         Tariff tariff = getTariff();
         double rate = tariff.getRate();
-        return calculator.calculatePrice(from, to, rate);
+        return PriceCalculator.calculatePrice(from, to, rate);
     }
 
     private Tariff getTariff() throws ServiceException {
-        LocalTime currTime = LocalTime.now();
-        setCurrTariffId(currTime.getHour());
-        return tariffService.getById(tariffId);
+        TariffServiceImpl tariffService = new TariffServiceImpl();
+        try {
+            LocalTime currTime = LocalTime.now();
+            setCurrTariffId(currTime.getHour());
+            return tariffService.getById(tariffId);
+        } finally {
+            tariffService.endService();
+        }
     }
 
     public int getTariffId() {

@@ -6,26 +6,22 @@ import com.epam.uber.entity.user.Taxi;
 import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.service.impl.LocationServiceImpl;
 import com.epam.uber.service.impl.TaxiServiceImpl;
-import com.epam.uber.utils.HttpUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
 
 import static com.epam.uber.command.Page.MAIN_PAGE_PATH;
 
 public class GoOfflineCommand implements Command {
 
     private static final Logger LOGGER = Logger.getLogger(GoOfflineCommand.class);
-    private TaxiServiceImpl taxiService;
-    private LocationServiceImpl locationService;
-
 
     @Override
     public Page execute(HttpServletRequest request) {
+        TaxiServiceImpl taxiService = new TaxiServiceImpl();
+        LocationServiceImpl locationService = new LocationServiceImpl();
         try {
-            init(request);
             HttpSession session = request.getSession();
             Taxi taxi = (Taxi) session.getAttribute(TAXI_ATTRIBUTE);
             int locationId = taxi.getLocationId();
@@ -39,13 +35,11 @@ public class GoOfflineCommand implements Command {
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
             return new Page(Page.ERROR_PAGE_PATH, true);
+        } finally {
+            taxiService.endService();
+            locationService.endService();
         }
     }
 
-    private void init(HttpServletRequest request) {
-        Connection connection = HttpUtils.getStoredConnection(request);
-        this.locationService = new LocationServiceImpl(connection);
-        this.taxiService = new TaxiServiceImpl(connection);
-    }
 
 }
