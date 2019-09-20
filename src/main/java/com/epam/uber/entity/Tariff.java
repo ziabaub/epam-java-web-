@@ -2,44 +2,33 @@ package com.epam.uber.entity;
 
 import com.epam.uber.entity.user.Entity;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Tariff extends Entity {
-    private LocalTime start ;
-    private LocalTime end ;
-    private double rate ;
+    private LocalDateTime start;
+    private double rate;
 
-    public Tariff(int id, LocalTime start, LocalTime end, double rate) {
+    public Tariff(int id, LocalDateTime start, double rate) {
         super(id);
         this.start = start;
-        this.end = end;
         this.rate = rate;
     }
 
-    public Tariff(LocalTime start, LocalTime end, double rate) {
-        this.start = start;
-        this.end = end;
+    public Tariff(double rate) {
+        this.start = LocalDateTime.now();
         this.rate = rate;
     }
 
     public Tariff() {
     }
 
-    public LocalTime getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalTime start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
-    }
-
-    public LocalTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalTime end) {
-        this.end = end;
     }
 
     public double getRate() {
@@ -57,20 +46,18 @@ public class Tariff extends Entity {
         if (!super.equals(o)) return false;
         Tariff tariff = (Tariff) o;
         return Double.compare(tariff.rate, rate) == 0 &&
-                Objects.equals(start, tariff.start) &&
-                Objects.equals(end, tariff.end);
+                Objects.equals(start, tariff.start);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), start, end, rate);
+        return Objects.hash(super.hashCode(), start, rate);
     }
 
     @Override
     public String toString() {
         return "Tariff{" +
                 "start=" + start +
-                ", end=" + end +
                 ", rate=" + rate +
                 '}';
     }

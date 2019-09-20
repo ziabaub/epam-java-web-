@@ -3,13 +3,16 @@ package com.epam.uber.command.client;
 import com.epam.uber.command.Command;
 import com.epam.uber.command.Page;
 import com.epam.uber.entity.Location;
+import com.epam.uber.entity.Tariff;
 import com.epam.uber.entity.client.Costumer;
 import com.epam.uber.entity.order.Order;
 import com.epam.uber.exceptions.ServiceException;
-import com.epam.uber.service.handler.LocationHandler;
-import com.epam.uber.service.handler.PriceHandler;
 import com.epam.uber.service.impl.CostumerServiceImpl;
+import com.epam.uber.service.impl.LocationServiceImpl;
 import com.epam.uber.service.impl.OrderServiceImpl;
+import com.epam.uber.service.impl.TariffServiceImpl;
+import com.epam.uber.utils.GPSManager;
+import com.epam.uber.utils.PriceCalculator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,17 +46,25 @@ public class OrderCommand implements Command {
 
 
     private Order buildOrder(HttpServletRequest request, int costumeId) throws ServiceException {
-        LocationHandler locationHandler = new LocationHandler();
-        PriceHandler priceHandler = new PriceHandler();
+        TariffServiceImpl tariffService = new TariffServiceImpl();
+        LocationServiceImpl locationService = new LocationServiceImpl();
+        try {
+            Location currLocation = GPSManager.getCurrentLocation();
+            int currLocationId = locationService.insert(currLocation);
 
-        Location currLocation = locationHandler.getCurrLocation();
-        int zoneDestination = Integer.parseInt(request.getParameter("destination"));
-        Location destinationLocation = locationHandler.getLocation(zoneDestination);
-        double price = priceHandler.getCurrPrice(currLocation.getZone(), zoneDestination);
-        int tariffId = priceHandler.getTariffId();
-        int locationId = currLocation.getId();
-        int destinationId = destinationLocation.getId();
-        return new Order(costumeId, tariffId, locationId, destinationId, price, "waiting");
+            int destZone = Integer.parseInt(request.getParameter("destination"));
+            Location destLocation = new Location(destZone);
+            int destLocationId = locationService.insert(destLocation);
+
+            Tariff tariff = tariffService.getCurrRate();
+            double price = PriceCalculator.calculatePrice(currLocation.getZone(), destZone, tariff);
+            int tariffId = tariff.getId();
+
+            return new Order(costumeId, tariffId, currLocationId, destLocationId, price, "waiting");
+        } finally {
+            tariffService.endService();
+            locationService.endService();
+        }
     }
 
     private int handleCostumer(HttpServletRequest request) throws ServiceException {

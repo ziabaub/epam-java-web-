@@ -39,6 +39,16 @@
     margin: 0 auto 20px;
 }
 
+.wrapper_form_tariff{
+    width: 300px;
+    height: 200px;
+    background-color: rgba(120, 120, 120, 0.7);
+    text-align: center;
+    padding-top: 30px;
+    box-sizing: border-box;
+    margin: 0 auto 20px;
+}
+
 .wrapper_form_order {
     margin-right: 100px;
     margin-left: auto;

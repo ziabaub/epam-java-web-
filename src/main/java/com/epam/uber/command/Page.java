@@ -29,6 +29,7 @@ public class Page {
      */
     public static final String TAXIS_LIST_PAGE_PATH = "/pages/admin/taxisList.jsp";
     public static final String ADD_TAXI_PAGE_PATH = "/pages/admin/addTaxi.jsp";
+    public static final String EDIT_RATE_PAGE_PATH = "/pages/admin/editRate.jsp";
 
     private String pageUrl;
     private boolean isRedirect;

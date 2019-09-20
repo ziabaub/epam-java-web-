@@ -31,7 +31,7 @@ public class UserServiceImpl implements Service<User> {
             return Optional.ofNullable(user);
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during login operation.", e);
+            throw new ServiceException("Exception during user login operation login = [" + login + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -45,7 +45,7 @@ public class UserServiceImpl implements Service<User> {
             return isUnique;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during check user login for unique operation.", e);
+            throw new ServiceException("Exception during check user login for unique operation login =[" + login + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -59,7 +59,7 @@ public class UserServiceImpl implements Service<User> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during user register operation user = [" + user.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -74,7 +74,7 @@ public class UserServiceImpl implements Service<User> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during user delete bye id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -88,7 +88,7 @@ public class UserServiceImpl implements Service<User> {
             return userById;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during get user according to his id operation id=[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -102,7 +102,7 @@ public class UserServiceImpl implements Service<User> {
             return users;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll operation.", e);
+            throw new ServiceException("Exception during selectAll users operation.", e);
         } finally {
             connectionManager.endTransaction();
         }

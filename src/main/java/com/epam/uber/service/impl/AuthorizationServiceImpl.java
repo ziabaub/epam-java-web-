@@ -27,7 +27,7 @@ public class AuthorizationServiceImpl implements Service<Author> {
             return Optional.ofNullable(author);
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during check Authorization ", e);
+            throw new ServiceException("Exception during check Authorization with permission code = [" + name + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -41,7 +41,7 @@ public class AuthorizationServiceImpl implements Service<Author> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during Author register operation with Authorization = [" + author.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -56,7 +56,7 @@ public class AuthorizationServiceImpl implements Service<Author> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during check user login for unique operation.", e);
+            throw new ServiceException("Exception during Author delete operation with id = [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

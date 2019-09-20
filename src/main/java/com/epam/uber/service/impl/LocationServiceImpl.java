@@ -26,7 +26,7 @@ public class LocationServiceImpl implements Service<Location> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during location register operation location = [" + location.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -40,7 +40,7 @@ public class LocationServiceImpl implements Service<Location> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during update operation.", e);
+            throw new ServiceException("Exception during location update operation location [" + location.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -54,7 +54,7 @@ public class LocationServiceImpl implements Service<Location> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during location delete operation id = [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -68,7 +68,7 @@ public class LocationServiceImpl implements Service<Location> {
             return locationById;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during getById operation.", e);
+            throw new ServiceException("Exception during get location by id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

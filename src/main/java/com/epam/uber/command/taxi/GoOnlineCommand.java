@@ -6,8 +6,9 @@ import com.epam.uber.entity.Location;
 import com.epam.uber.entity.user.Taxi;
 import com.epam.uber.entity.user.User;
 import com.epam.uber.exceptions.ServiceException;
-import com.epam.uber.service.handler.LocationHandler;
+import com.epam.uber.service.impl.LocationServiceImpl;
 import com.epam.uber.service.impl.TaxiServiceImpl;
+import com.epam.uber.utils.GPSManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,17 +22,20 @@ public class GoOnlineCommand implements Command {
 
     @Override
     public Page execute(HttpServletRequest request) {
+        LocationServiceImpl locationService = new LocationServiceImpl();
         try {
-            LocationHandler handler = new LocationHandler();
             HttpSession session = request.getSession();
-            Location location = handler.getCurrLocation();
+            Location currLocation = GPSManager.getCurrentLocation();
+            int currLocationId = locationService.insert(currLocation);
             int id = getCurrUserId(session);
-            Taxi taxi = buildTaxi(id, location.getId());
+            Taxi taxi = buildTaxi(id, currLocationId);
             session.setAttribute(TAXI_ATTRIBUTE, taxi);
             return new Page(MAIN_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
             return new Page(Page.ERROR_PAGE_PATH, true);
+        } finally {
+            locationService.endService();
         }
     }
 

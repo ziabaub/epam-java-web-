@@ -8,7 +8,6 @@ import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.pool.ConnectionManager;
 import com.epam.uber.service.Service;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class TaxiServiceImpl implements Service<Taxi> {
@@ -29,7 +28,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return taxiById;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during getById operation.", e);
+            throw new ServiceException("Exception during get taxi by id  operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -43,7 +42,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during taxi register operation taxi =[" + taxi.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -57,7 +56,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during update operation.", e);
+            throw new ServiceException("Exception during taxi update operation taxi =[" + taxi.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -71,7 +70,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during taxi delete according his id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -85,7 +84,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return taxis;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll operation.", e);
+            throw new ServiceException("Exception during selectAll taxis operation ", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -99,7 +98,7 @@ public class TaxiServiceImpl implements Service<Taxi> {
             return taxis;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll operation.", e);
+            throw new ServiceException("Exception during selectAll taxis according to his firstname operation name =[" + name + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

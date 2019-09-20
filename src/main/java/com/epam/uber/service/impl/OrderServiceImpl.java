@@ -29,7 +29,7 @@ public class OrderServiceImpl implements Service<Order> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during order register operation order =[" + order.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -43,7 +43,7 @@ public class OrderServiceImpl implements Service<Order> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during update operation.", e);
+            throw new ServiceException("Exception during order update operation order = [" + order.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -57,7 +57,7 @@ public class OrderServiceImpl implements Service<Order> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during order delete by id operation id = [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -72,7 +72,7 @@ public class OrderServiceImpl implements Service<Order> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during delete related order to taxi by id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -86,7 +86,7 @@ public class OrderServiceImpl implements Service<Order> {
             return orderById;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during getById operation.", e);
+            throw new ServiceException("Exception during get order by id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -100,7 +100,7 @@ public class OrderServiceImpl implements Service<Order> {
             return orders;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll operation.", e);
+            throw new ServiceException("Exception during selectAll orders operation ", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -114,13 +114,13 @@ public class OrderServiceImpl implements Service<Order> {
             return orderInfoList;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during select Order Info operation.", e);
+            throw new ServiceException("Exception during selectAll Order containing 'waiting' statusInfo operation .", e);
         } finally {
             connectionManager.endTransaction();
         }
     }
 
-    public List<OrderInfo> getAvailableOrdersByTaxiId(int id) throws ServiceException {
+    public List<OrderInfo> selectOrderByTaxiId(int id) throws ServiceException {
         try {
             connectionManager.startTransaction();
             List<OrderInfo> orderInfoList = orderDAO.selectOrdersByDriverId(id);
@@ -128,7 +128,7 @@ public class OrderServiceImpl implements Service<Order> {
             return orderInfoList;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during select Order Info operation.", e);
+            throw new ServiceException("Exception during select Order according to taxi id operation id [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

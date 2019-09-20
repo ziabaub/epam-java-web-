@@ -4,13 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Taxi extends Entity implements Serializable {
-    private int locationId;
+    private int locationId = -1;
     private boolean status;
-
-    {
-        this.locationId = -1;
-        this.status = false;
-    }
 
     public Taxi(int id, int locationId, boolean status) {
         super(id);

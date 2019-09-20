@@ -20,6 +20,7 @@
     <fmt:message key="menu.show_taxis" var="show_taxis"/>
     <fmt:message key="menu.add_taxi" var="add_taxi"/>
     <fmt:message key="menu.find_taxi" var="find_taxi"/>
+    <fmt:message key="admin.edit_rate" var="rate"/>
 </fmt:bundle>
 
 <header class="header">
@@ -42,9 +43,9 @@
             <c:when test="${sessionScope.user == null}">
                 <span class="hello_text">${pageScope.hello_guest}</span>
                 <a class="logout_a"
-                   href="${pageContext.request.contextPath}/pages/common/login.jsp">${pageScope.login}</a>
+                   href="${pageContext.request.contextPath}/pages/common/login.jsp" id="login">${pageScope.login}</a>
                 <a class="register_login_a"
-                   href="${pageContext.request.contextPath}/pages/common/register.jsp">${pageScope.register}</a>
+                   href="${pageContext.request.contextPath}/pages/common/register.jsp" id="register">${pageScope.register}</a>
             </c:when>
             <c:otherwise>
                 <span class="hello_text">${pageScope.hello} ${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
@@ -97,7 +98,10 @@
                         <a href="${pageContext.request.contextPath}/controller?command=show_taxis">${pageScope.show_taxis}</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/controller?command=add_taxi">${pageScope.add_taxi}</a>
+                        <a href="${pageContext.request.contextPath}/pages/admin/addTaxi.jsp">${pageScope.add_taxi}</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/pages/admin/editRate.jsp">${pageScope.rate}</a>
                     </li>
                     <li>
                         <form id="find" name="FindForm" method="POST"

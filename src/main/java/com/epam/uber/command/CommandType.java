@@ -24,7 +24,7 @@ public enum CommandType {
      */
     SHOW_TAXIS(new ShowTaxisCommand()),
     FIND_TAXI(new FindTaxisCommand()),
-
+    EDIT_RATE(new ChangeRateCommand()),
     DELETE_TAXI(new DeleteTaxiCommand()),
     ADD_PERMISSION(new AddPermissionCommand()),
 
@@ -34,6 +34,7 @@ public enum CommandType {
     COMMON_LOGIN(new LoginCommand()),
     COMMON_LOGOUT(new LogoutCommand()),
     COMMON_REGISTER(new RegisterCommand()),
+    COMMON_CHANGE_LANGUAGE(new ChangeLanguageCommand()),
 
     /**
      * Taxi's commands.
@@ -44,29 +45,14 @@ public enum CommandType {
     ACCEPT(new AcceptCommand()),
     REACH_DESTINATION(new ReachDestinationCommand()),
     HISTORY(new HistoryCommand()),
+    PROFILE(new ProfileCommand()),
 
     /**
      * Client Command
      */
     CLIENT_ORDER(new OrderCommand()),
-    CANCEL_ORDER(new ClientCancelOrderCommand()),
+    CANCEL_ORDER(new ClientCancelOrderCommand());
 
-    /**
-     * no need database.
-     *
-     *
-     * <p>
-     * Admin commands.
-     */
-    ADD_TAXI(new AddTaxiCommand()),
-    /**
-     * common
-     */
-    COMMON_CHANGE_LANGUAGE(new ChangeLanguageCommand()),
-    /**
-     * Taxi's commands.
-     */
-    PROFILE(new ProfileCommand());
 
     private Command command;
 

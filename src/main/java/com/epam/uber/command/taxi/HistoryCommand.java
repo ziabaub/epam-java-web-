@@ -23,7 +23,7 @@ public class HistoryCommand implements Command {
         try {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute(USER_ATTRIBUTE);
-            List<OrderInfo> list = orderService.getAvailableOrdersByTaxiId(user.getId());
+            List<OrderInfo> list = orderService.selectOrderByTaxiId(user.getId());
             session.setAttribute(LIST_ATTRIBUTE, list);
             return new Page(HISTORY_PAGE_PATH, true);
         } catch (ServiceException e) {

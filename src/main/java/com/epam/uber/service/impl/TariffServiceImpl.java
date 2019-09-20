@@ -25,7 +25,7 @@ public class TariffServiceImpl implements Service<Tariff> {
             return id;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during register operation.", e);
+            throw new ServiceException("Exception during tariff register operation tariff = [" + tariff.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -39,7 +39,7 @@ public class TariffServiceImpl implements Service<Tariff> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during update operation.", e);
+            throw new ServiceException("Exception during tariff update operation tariff = [" + tariff.toString() + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -53,7 +53,7 @@ public class TariffServiceImpl implements Service<Tariff> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during tariff delete by id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -67,7 +67,21 @@ public class TariffServiceImpl implements Service<Tariff> {
             return tariffById;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during getById operation.", e);
+            throw new ServiceException("Exception during get tariff according to his id  operation id = [" + id + "]", e);
+        } finally {
+            connectionManager.endTransaction();
+        }
+    }
+
+    public Tariff getCurrRate() throws ServiceException {
+        try {
+            connectionManager.startTransaction();
+            Tariff tariff = tariffDAO.getCurrTariff();
+            connectionManager.commitTransaction();
+            return tariff;
+        } catch (DAOException e) {
+            connectionManager.rollbackTransaction();
+            throw new ServiceException("Exception during get tariff rate  operation ", e);
         } finally {
             connectionManager.endTransaction();
         }

@@ -43,7 +43,7 @@ public class CostumerServiceImpl implements Service<Costumer> {
             return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during delete operation.", e);
+            throw new ServiceException("Exception during Costumer delete operation with id = [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }
@@ -57,7 +57,7 @@ public class CostumerServiceImpl implements Service<Costumer> {
             return costumers;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll operation.", e);
+            throw new ServiceException("Exception during costumer selectAll operation.", e);
         } finally {
             connectionManager.endTransaction();
         }

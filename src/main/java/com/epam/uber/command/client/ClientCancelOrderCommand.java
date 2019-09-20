@@ -38,7 +38,7 @@ public class ClientCancelOrderCommand implements Command {
             int destinationId = order.getDestinationLocationId();
             int currLocationId = order.getCurrLocationId();
             int costumerId = order.getCostumerId();
-            orderService.delete(order.getId());//should be in transaction
+            orderService.delete(order.getId());
             locationService.delete(destinationId);
             locationService.delete(currLocationId);
             costumerService.delete(costumerId);
