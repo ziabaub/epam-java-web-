@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderFilter {
-    private List<OrderInfo> orders;
+    private final List<OrderInfo> orders;
 
     public OrderFilter(List<OrderInfo> orders) {
         this.orders = orders;

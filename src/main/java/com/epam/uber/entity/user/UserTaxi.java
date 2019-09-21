@@ -20,9 +20,6 @@ public class UserTaxi extends Entity implements Serializable {
         this.location = location;
     }
 
-    public UserTaxi() {
-    }
-
     public String getFirstName() {
         return firstName;
     }

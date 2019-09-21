@@ -31,22 +31,6 @@ public class User extends Entity implements Serializable {
         this.userRole = userRole;
     }
 
-    public User(String firstName, String lastName, String login, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    public User() {
-    }
-
     public String getFirstName() {
         return firstName;
     }

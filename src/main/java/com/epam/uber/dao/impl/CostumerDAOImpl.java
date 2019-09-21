@@ -17,11 +17,6 @@ public class CostumerDAOImpl extends AbstractDAO<Costumer> {
         super(connection, "costumer");
     }
 
-    public List<Costumer> selectAllCostumer() throws DAOException {
-        String sqlQuery = "SELECT * FROM costumer";
-        return getEntities(sqlQuery);
-    }
-
     public int insertCostumer(Costumer costumer) throws DAOException {
         String fields = "(name, phone,email,note)";
         return insert(costumer,fields);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import static com.epam.uber.command.Page.EDIT_RATE_PAGE_PATH;
 import static com.epam.uber.utils.MessageManager.SUCCESS_MESSAGE_KEY;
+import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class ChangeRateCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ChangeRateCommand.class);
@@ -25,7 +26,7 @@ public class ChangeRateCommand implements Command {
             return new Page(EDIT_RATE_PAGE_PATH, false, SUCCESS_MESSAGE_KEY);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(Page.ERROR_PAGE_PATH, true);
+            return new Page(EDIT_RATE_PAGE_PATH, true , UNSUCCESSFUL_MESSAGE_KEY);
         } finally {
             tariffService.endService();
         }

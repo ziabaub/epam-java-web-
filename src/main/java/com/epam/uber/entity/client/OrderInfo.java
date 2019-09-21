@@ -4,7 +4,6 @@ import com.epam.uber.entity.user.Entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class OrderInfo extends Entity implements Serializable {

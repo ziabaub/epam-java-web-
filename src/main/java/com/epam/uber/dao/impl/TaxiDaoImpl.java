@@ -11,24 +11,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class TaxiDaoImpl extends AbstractDAO<Taxi> {
-    private Connection connection;
+    private final Connection connection;
 
     public TaxiDaoImpl(Connection connection) {
         super(connection, "taxi");
         this.connection = connection;
     }
 
-    public boolean updateTaxi(Taxi taxi) throws DAOException {
+    public void updateTaxi(Taxi taxi) throws DAOException {
         String sqlQuery = "UPDATE taxi SET current_location_id=?,status=? WHERE id=?";
         String currLocation = String.valueOf(taxi.getLocationId());
-        String status = String.valueOf(taxi.getStatus());
+        String status = (taxi.getStatus()) ? "1" : "0";
         String id = String.valueOf(taxi.getId());
         List<String> params = Arrays.asList(currLocation, status, id);
-        return executeQuery(sqlQuery, params);
+        executeQuery(sqlQuery, params);
     }
 
     public List<UserTaxi> selectAllTaxi() throws DAOException {
@@ -70,12 +69,6 @@ public class TaxiDaoImpl extends AbstractDAO<Taxi> {
         }
     }
 
-    public Taxi getTaxiById(int id) throws DAOException {
-        String sqlQuery = "SELECT * FROM taxi WHERE id=?";
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        return getEntity(sqlQuery, params);
-    }
-
     public int insertTaxi(Taxi taxi) throws DAOException {
         String fields = "(id, current_location_id,status)";
         return insert(taxi, fields);
@@ -85,7 +78,7 @@ public class TaxiDaoImpl extends AbstractDAO<Taxi> {
     public List<String> getEntityParameters(Taxi entity) {
         Integer currentLocationId = entity.getLocationId();
         String locationId = String.valueOf(currentLocationId);
-        String state = String.valueOf(entity.getStatus());
+        String state = (entity.getStatus()) ? "1" : "0";
         String id = String.valueOf(entity.getId());
         return new ArrayList<>(Arrays.asList(id, locationId, state));
     }

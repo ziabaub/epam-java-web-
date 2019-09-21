@@ -8,14 +8,12 @@ public class Page {
      * Common pages.
      */
     public static final String LOGIN_PAGE_PATH = "/pages/common/login.jsp";
-    public static final String ERROR_PAGE_PATH = "/pages/common/error.jsp";
     public static final String MAIN_PAGE_PATH = "/pages/common/main.jsp";
     public static final String REGISTER_PAGE_PATH = "/pages/common/register.jsp";
 
     /**
      * taxi pages
      */
-    public static final String PROFILE_TAXI_PAGE_PATH = "/pages/taxi/profile.jsp";
     public static final String DISPATCHER_PAGE_PATH = "/pages/taxi/dispatcher.jsp";
     public static final String HISTORY_PAGE_PATH = "/pages/taxi/history.jsp";
 
@@ -44,8 +42,6 @@ public class Page {
     /**
      * Instantiates a new Page.
      */
-    public Page() {
-    }
 
     public Page(String pageUrl, boolean isRedirect, String messageKey) {
         this.pageUrl = pageUrl;
@@ -57,23 +53,13 @@ public class Page {
         return pageUrl;
     }
 
-    public void setPageUrl(String pageUrl) {
-        this.pageUrl = pageUrl;
-    }
 
     public boolean isRedirect() {
         return isRedirect;
-    }
-
-    public void setRedirect(boolean redirect) {
-        isRedirect = redirect;
     }
 
     public String getMessageKey() {
         return messageKey;
     }
 
-    public void setMessageKey(String messageKey) {
-        this.messageKey = messageKey;
-    }
 }

@@ -26,7 +26,7 @@ public class ShowTaxisCommand implements Command {
             return new Page(TAXIS_LIST_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(Page.ERROR_PAGE_PATH, true);
+            return new Page(TAXIS_LIST_PAGE_PATH, true,TAXIS_LIST_PAGE_PATH);
         } finally {
             taxiService.endService();
         }

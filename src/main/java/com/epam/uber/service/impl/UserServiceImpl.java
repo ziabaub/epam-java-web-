@@ -13,8 +13,8 @@ import java.util.Optional;
 
 public class UserServiceImpl implements Service<User> {
 
-    private UserDAOImpl userDAO;
-    private ConnectionManager connectionManager;
+    private final UserDAOImpl userDAO;
+    private final ConnectionManager connectionManager;
 
 
     public UserServiceImpl() {
@@ -80,33 +80,6 @@ public class UserServiceImpl implements Service<User> {
         }
     }
 
-    public User getById(int id) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            User userById = userDAO.getUserById(id);
-            connectionManager.commitTransaction();
-            return userById;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during get user according to his id operation id=[" + id + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
-    public List<User> selectAll() throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            List<User> users = userDAO.selectAllUsers();
-            connectionManager.commitTransaction();
-            return users;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll users operation.", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
 
     @Override
     public void endService() {

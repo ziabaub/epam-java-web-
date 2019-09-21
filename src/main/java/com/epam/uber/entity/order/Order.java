@@ -41,9 +41,6 @@ public class Order extends Entity implements Serializable {
         this.status = status;
     }
 
-    public Order() {
-    }
-
     public Date getDate() {
         return date;
     }
@@ -130,7 +127,7 @@ public class Order extends Entity implements Serializable {
                 Double.compare(order.cost, cost) == 0 &&
                 rate == order.rate &&
                 Objects.equals(date, order.date) &&
-                status == order.status;
+                Objects.equals(status, order.status);
     }
 
     @Override

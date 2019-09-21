@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 import static com.epam.uber.command.Page.TAXIS_LIST_PAGE_PATH;
+import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class DeleteTaxiCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(DeleteTaxiCommand.class);

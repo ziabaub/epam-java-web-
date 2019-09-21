@@ -32,17 +32,6 @@ public class UserDAOImpl extends AbstractDAO<User> {
         return getEntity(sqlQuery, params) == null;
     }
 
-    public User getUserById(int id) throws DAOException {
-        String sqlQuery = "SELECT * FROM user WHERE id=?";
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        return getEntity(sqlQuery, params);
-    }
-
-    public List<User> selectAllUsers() throws DAOException {
-        String sqlQuery = "SELECT * FROM user";
-        return getEntities(sqlQuery);
-    }
-
     public int insertUser(User user) throws DAOException {
         String fields = "(firstname, lastname ,login, password,email,user_role)";
         return insert(user, fields);
@@ -56,7 +45,7 @@ public class UserDAOImpl extends AbstractDAO<User> {
         String login = entity.getLogin();
         String password = entity.getPassword();
         String email = entity.getEmail();
-        String role = String.valueOf(entity.getUserRole());
+        String role = (entity.getUserRole()) ? "1" : "0";
         return new ArrayList<>(Arrays.asList(firstName, lastName, login, password, email, role));
     }
 

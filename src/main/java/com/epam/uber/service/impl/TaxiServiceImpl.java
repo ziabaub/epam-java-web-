@@ -12,26 +12,12 @@ import java.util.List;
 
 public class TaxiServiceImpl implements Service<Taxi> {
 
-    private TaxiDaoImpl taxiDao;
-    private ConnectionManager connectionManager;
+    private final TaxiDaoImpl taxiDao;
+    private final ConnectionManager connectionManager;
 
     public TaxiServiceImpl() {
         this.connectionManager = new ConnectionManager();
         this.taxiDao = new TaxiDaoImpl(connectionManager.getConnection());
-    }
-
-    public Taxi getById(int id) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            Taxi taxiById = taxiDao.getTaxiById(id);
-            connectionManager.commitTransaction();
-            return taxiById;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during get taxi by id  operation id =[" + id + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
     }
 
     public int insert(Taxi taxi) throws ServiceException {
@@ -48,12 +34,11 @@ public class TaxiServiceImpl implements Service<Taxi> {
         }
     }
 
-    public boolean update(Taxi taxi) throws ServiceException {
+    public void update(Taxi taxi) throws ServiceException {
         try {
             connectionManager.startTransaction();
-            boolean result = taxiDao.updateTaxi(taxi);
+            taxiDao.updateTaxi(taxi);
             connectionManager.commitTransaction();
-            return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during taxi update operation taxi =[" + taxi.toString() + "]", e);

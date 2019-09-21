@@ -87,7 +87,7 @@
                         <a href="${pageContext.request.contextPath}/controller?command=history">${pageScope.history}</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/controller?command=profile">${pageScope.profile}</a>
+                        <a href="${pageContext.request.contextPath}/pages/taxi/profile.jsp">${pageScope.profile}</a>
                     </li>
                     <li>
                         <tag:status/>

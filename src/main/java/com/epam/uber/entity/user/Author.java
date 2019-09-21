@@ -6,8 +6,6 @@ public class Author extends Entity {
     private String code ;
     private boolean role ;
 
-    public Author() {
-    }
 
     public Author(String code, boolean role) {
         this.code = code;

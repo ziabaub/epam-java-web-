@@ -10,7 +10,7 @@ public class ConnectionManager implements AutoCloseable {
 
     private static final Logger LOGGER = Logger.getLogger(ConnectionManager.class);
     private final Connection connection;
-    private ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool;
 
     public ConnectionManager() {
         connectionPool = ConnectionPool.getInstance();

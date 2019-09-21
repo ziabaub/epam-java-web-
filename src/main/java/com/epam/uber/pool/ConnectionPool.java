@@ -16,12 +16,12 @@ public class ConnectionPool {
 
     private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 
-    private static Lock instanceLocker;
-    private static Lock poolLocker;
-    private static Condition poolCondition;
+    private static final Lock instanceLocker;
+    private static final Lock poolLocker;
+    private static final Condition poolCondition;
 
     private static ConnectionPool instance;
-    private static AtomicBoolean instanceIsNotAvailable;
+    private static final AtomicBoolean instanceIsNotAvailable;
 
     private final Deque<Connection> pool;
 

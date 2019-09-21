@@ -25,9 +25,6 @@ public class Costumer extends Entity {
         this.note = note;
     }
 
-    public Costumer() {
-    }
-
     public String getName() {
         return name;
     }

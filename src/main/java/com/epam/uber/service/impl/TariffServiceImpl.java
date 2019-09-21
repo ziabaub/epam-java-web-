@@ -9,8 +9,8 @@ import com.epam.uber.service.Service;
 
 public class TariffServiceImpl implements Service<Tariff> {
 
-    private TariffDAOImpl tariffDAO;
-    private ConnectionManager connectionManager;
+    private final TariffDAOImpl tariffDAO;
+    private final ConnectionManager connectionManager;
 
     public TariffServiceImpl() {
         this.connectionManager = new ConnectionManager();
@@ -31,20 +31,6 @@ public class TariffServiceImpl implements Service<Tariff> {
         }
     }
 
-    public boolean update(Tariff tariff) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            boolean result = tariffDAO.updateTariff(tariff);
-            connectionManager.commitTransaction();
-            return result;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during tariff update operation tariff = [" + tariff.toString() + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
     public boolean delete(int id) throws ServiceException {
         try {
             connectionManager.startTransaction();
@@ -54,20 +40,6 @@ public class TariffServiceImpl implements Service<Tariff> {
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during tariff delete by id operation id =[" + id + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
-    public Tariff getById(int id) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            Tariff tariffById = tariffDAO.getTariffById(id);
-            connectionManager.commitTransaction();
-            return tariffById;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during get tariff according to his id  operation id = [" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

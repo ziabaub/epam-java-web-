@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.epam.uber.command.Page.TAXIS_LIST_PAGE_PATH;
+import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class FindTaxisCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(FindTaxisCommand.class);
@@ -27,7 +28,7 @@ public class FindTaxisCommand implements Command {
             return new Page(TAXIS_LIST_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(Page.ERROR_PAGE_PATH, true);
+            return new Page(TAXIS_LIST_PAGE_PATH ,true, UNSUCCESSFUL_MESSAGE_KEY);
         } finally {
             taxiService.endService();
         }

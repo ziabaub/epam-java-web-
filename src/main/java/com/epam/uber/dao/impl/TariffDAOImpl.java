@@ -16,22 +16,11 @@ import java.util.*;
 
 public class TariffDAOImpl extends AbstractDAO<Tariff> {
 
-    private Connection connection;
+    private final Connection connection;
 
     public TariffDAOImpl(Connection connection) {
         super(connection, "tariff");
         this.connection = connection;
-    }
-
-    public Tariff getTariffById(int id) throws DAOException {
-        String sqlQuery = "SELECT * FROM tariff WHERE id=?";
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        return getEntity(sqlQuery, params);
-    }
-
-    public boolean updateTariff(Tariff tariff) throws DAOException {
-        String sqlQuery = "UPDATE tariff SET start_time=? rate=? WHERE id=?";
-        return update(tariff, sqlQuery);
     }
 
     public Tariff getCurrTariff() throws DAOException {
@@ -83,7 +72,7 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
         }
     }
 
-    public LocalDateTime convertToLocalDateTime(Date dateToConvert) {
+    private LocalDateTime convertToLocalDateTime(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();

@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class LocationDAOImpl extends AbstractDAO<Location> {
@@ -17,17 +16,6 @@ public class LocationDAOImpl extends AbstractDAO<Location> {
 
     public LocationDAOImpl(Connection connection) {
         super(connection, "location");
-    }
-
-    public Location getLocationById(int id) throws DAOException {
-        String sqlQuery = "SELECT * FROM location WHERE id=?";
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        return getEntity(sqlQuery, params);
-    }
-
-    public boolean updateLocation(Location location) throws DAOException {
-        String sqlQuery = "UPDATE location SET country=?, city=?, zone=? WHERE id =?";
-        return update(location, sqlQuery);
     }
 
     public int insertLocation(Location location) throws DAOException {

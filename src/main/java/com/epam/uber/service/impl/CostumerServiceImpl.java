@@ -7,12 +7,10 @@ import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.pool.ConnectionManager;
 import com.epam.uber.service.Service;
 
-import java.util.List;
-
 public class CostumerServiceImpl implements Service<Costumer> {
 
-    private CostumerDAOImpl costumerDAO;
-    private ConnectionManager connectionManager;
+    private final CostumerDAOImpl costumerDAO;
+    private final ConnectionManager connectionManager;
 
     public CostumerServiceImpl() {
         this.connectionManager = new ConnectionManager();
@@ -44,20 +42,6 @@ public class CostumerServiceImpl implements Service<Costumer> {
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during Costumer delete operation with id = [" + id + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
-    public List<Costumer> selectAll() throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            List<Costumer> costumers = costumerDAO.selectAllCostumer();
-            connectionManager.commitTransaction();
-            return costumers;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during costumer selectAll operation.", e);
         } finally {
             connectionManager.endTransaction();
         }

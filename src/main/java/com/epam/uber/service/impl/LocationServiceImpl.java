@@ -9,8 +9,8 @@ import com.epam.uber.service.Service;
 
 public class LocationServiceImpl implements Service<Location> {
 
-    private LocationDAOImpl locationDAO;
-    private ConnectionManager connectionManager;
+    private final LocationDAOImpl locationDAO;
+    private final ConnectionManager connectionManager;
 
     public LocationServiceImpl() {
         this.connectionManager = new ConnectionManager();
@@ -32,20 +32,6 @@ public class LocationServiceImpl implements Service<Location> {
         }
     }
 
-    public boolean update(Location location) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            boolean result = locationDAO.updateLocation(location);
-            connectionManager.commitTransaction();
-            return result;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during location update operation location [" + location.toString() + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
     public boolean delete(int id) throws ServiceException {
         try {
             connectionManager.startTransaction();
@@ -55,20 +41,6 @@ public class LocationServiceImpl implements Service<Location> {
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during location delete operation id = [" + id + "]", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
-
-    public Location getById(int id) throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            Location locationById = locationDAO.getLocationById(id);
-            connectionManager.commitTransaction();
-            return locationById;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during get location by id operation id =[" + id + "]", e);
         } finally {
             connectionManager.endTransaction();
         }

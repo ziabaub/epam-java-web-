@@ -19,24 +19,19 @@ import java.util.*;
 public class OrderDAOImpl extends AbstractDAO<Order> {
 
 
-    private Connection connection;
+    private final Connection connection;
 
     public OrderDAOImpl(Connection connection) {
         super(connection, "journey");
         this.connection = connection;
     }
 
-    public List<Order> selectAllOrder() throws DAOException {
-        String sqlQuery = "SELECT * FROM journey";
-        return getEntities(sqlQuery);
-    }
-
-    public boolean updateOrder(Order order) throws DAOException {
+    public void updateOrder(Order order) throws DAOException {
         String sqlQuery = "UPDATE journey SET taxi_id=? ,status=? WHERE id=?";
         String taxiId = String.valueOf(order.getTaxiId());
         String orderId = String.valueOf(order.getId());
         List<String> params = Arrays.asList(taxiId, order.getStatus(), orderId);
-        return executeQuery(sqlQuery, params);
+        executeQuery(sqlQuery, params);
     }
 
     public Order getOrderById(int id) throws DAOException {
@@ -60,10 +55,10 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         return getOrderInfos(condition);
     }
 
-    public boolean deleteByTaxiId(int id) throws DAOException {
+    public void deleteByTaxiId(int id) throws DAOException {
         String sqlQuery = "DELETE FROM journey WHERE taxi_id= ?";
         List<String> params = Collections.singletonList(String.valueOf(id));
-        return executeQuery(sqlQuery, params);
+        executeQuery(sqlQuery, params);
     }
 
     private List<OrderInfo> getOrderInfos(String condition) throws DAOException {
@@ -125,7 +120,7 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         }
     }
 
-    public LocalDateTime convertToLocalDateTime(Date dateToConvert) {
+    private LocalDateTime convertToLocalDateTime(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();

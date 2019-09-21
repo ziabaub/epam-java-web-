@@ -45,8 +45,6 @@ public enum CommandType {
     ACCEPT(new AcceptCommand()),
     REACH_DESTINATION(new ReachDestinationCommand()),
     HISTORY(new HistoryCommand()),
-    PROFILE(new ProfileCommand()),
-
     /**
      * Client Command
      */

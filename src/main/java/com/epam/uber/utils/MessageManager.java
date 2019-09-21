@@ -11,7 +11,7 @@ public class MessageManager {
     public static final String SUCCESS_MESSAGE_KEY = "Success";
     public static final String LOGIN_ERROR_MESSAGE_KEY = "message.login_error";
     public static final String COMMAND_ERROR_MESSAGE_KEY = "message.command_error";
-    public static final String REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY = "Unsuccessful";
+    public static final String UNSUCCESSFUL_MESSAGE_KEY = "Unsuccessful";
 
     private MessageManager() {
     }

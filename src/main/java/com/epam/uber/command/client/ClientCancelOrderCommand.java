@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static com.epam.uber.command.Page.MAIN_PAGE_PATH;
+import static com.epam.uber.command.Page.TAXIS_LIST_PAGE_PATH;
+
 public class ClientCancelOrderCommand implements Command {
 
     private static final Logger LOGGER = Logger.getLogger(ClientCancelOrderCommand.class);
@@ -22,10 +25,10 @@ public class ClientCancelOrderCommand implements Command {
         try {
             int orderId = getOrderId(request);
             deleteOrderById(orderId);
-            return new Page(Page.MAIN_PAGE_PATH, true);
+            return new Page(MAIN_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(Page.ERROR_PAGE_PATH, true);
+            return new Page(MAIN_PAGE_PATH, true, TAXIS_LIST_PAGE_PATH);
         }
     }
 

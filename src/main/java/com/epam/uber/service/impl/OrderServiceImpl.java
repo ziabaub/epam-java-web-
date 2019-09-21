@@ -12,8 +12,8 @@ import java.util.List;
 
 public class OrderServiceImpl implements Service<Order> {
 
-    private OrderDAOImpl orderDAO;
-    private ConnectionManager connectionManager;
+    private final OrderDAOImpl orderDAO;
+    private final ConnectionManager connectionManager;
 
     public OrderServiceImpl() {
         this.connectionManager = new ConnectionManager();
@@ -35,12 +35,11 @@ public class OrderServiceImpl implements Service<Order> {
         }
     }
 
-    public boolean update(Order order) throws ServiceException {
+    public void update(Order order) throws ServiceException {
         try {
             connectionManager.startTransaction();
-            boolean result = orderDAO.updateOrder(order);
+            orderDAO.updateOrder(order);
             connectionManager.commitTransaction();
-            return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during order update operation order = [" + order.toString() + "]", e);
@@ -64,12 +63,11 @@ public class OrderServiceImpl implements Service<Order> {
     }
 
 
-    public boolean deleteRelatedOrders(int id) throws ServiceException {
+    public void deleteRelatedOrders(int id) throws ServiceException {
         try {
             connectionManager.startTransaction();
-            boolean result = orderDAO.deleteByTaxiId(id);
+            orderDAO.deleteByTaxiId(id);
             connectionManager.commitTransaction();
-            return result;
         } catch (DAOException e) {
             connectionManager.rollbackTransaction();
             throw new ServiceException("Exception during delete related order to taxi by id operation id =[" + id + "]", e);
@@ -92,19 +90,6 @@ public class OrderServiceImpl implements Service<Order> {
         }
     }
 
-    public List<Order> selectAll() throws ServiceException {
-        try {
-            connectionManager.startTransaction();
-            List<Order> orders = orderDAO.selectAllOrder();
-            connectionManager.commitTransaction();
-            return orders;
-        } catch (DAOException e) {
-            connectionManager.rollbackTransaction();
-            throw new ServiceException("Exception during selectAll orders operation ", e);
-        } finally {
-            connectionManager.endTransaction();
-        }
-    }
 
     public List<OrderInfo> getAvailableOrders() throws ServiceException {
         try {

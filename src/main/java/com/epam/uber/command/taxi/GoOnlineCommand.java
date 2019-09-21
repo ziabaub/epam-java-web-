@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import static com.epam.uber.command.Page.MAIN_PAGE_PATH;
+import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class GoOnlineCommand implements Command {
 
@@ -33,7 +34,7 @@ public class GoOnlineCommand implements Command {
             return new Page(MAIN_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(Page.ERROR_PAGE_PATH, true);
+            return new Page(MAIN_PAGE_PATH, true, UNSUCCESSFUL_MESSAGE_KEY);
         } finally {
             locationService.endService();
         }

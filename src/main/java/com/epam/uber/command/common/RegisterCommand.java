@@ -32,13 +32,13 @@ public class RegisterCommand implements Command {
             String confirmationCode = request.getParameter("confirmation_code");
             Optional<Author> authorization = authorizationService.contains(confirmationCode);
             if (!authorization.isPresent()) {
-                return new Page(Page.REGISTER_PAGE_PATH, false, REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY);
+                return new Page(Page.REGISTER_PAGE_PATH, false, UNSUCCESSFUL_MESSAGE_KEY);
             }
 
             Author author = authorization.get();
             Optional<User> user = buildUser(request, author);
             if (!user.isPresent()) {
-                return new Page(Page.REGISTER_PAGE_PATH, false, REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY);
+                return new Page(Page.REGISTER_PAGE_PATH, false, UNSUCCESSFUL_MESSAGE_KEY);
             }
 
             User u = user.get();
@@ -51,7 +51,7 @@ public class RegisterCommand implements Command {
             return new Page(Page.LOGIN_PAGE_PATH, false, SUCCESS_MESSAGE_KEY);
         } catch (ServiceException exception) {
             LOGGER.error(exception.getMessage(), exception);
-            return new Page(Page.REGISTER_PAGE_PATH, true, REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY);
+            return new Page(Page.REGISTER_PAGE_PATH, true, UNSUCCESSFUL_MESSAGE_KEY);
         } finally {
             authorizationService.endService();
         }

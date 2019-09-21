@@ -14,11 +14,6 @@ public class Taxi extends Entity implements Serializable {
     }
 
 
-    public Taxi(int locationId, boolean status) {
-        this.locationId = locationId;
-        this.status = status;
-    }
-
     public Taxi() {
     }
 

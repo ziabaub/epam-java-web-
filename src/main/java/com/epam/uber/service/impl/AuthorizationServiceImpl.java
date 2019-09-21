@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class AuthorizationServiceImpl implements Service<Author> {
 
-    private AuthorizationDAOImpl authorDAO;
-    private ConnectionManager connectionManager;
+    private final AuthorizationDAOImpl authorDAO;
+    private final ConnectionManager connectionManager;
 
     public AuthorizationServiceImpl() {
         this.connectionManager = new ConnectionManager();

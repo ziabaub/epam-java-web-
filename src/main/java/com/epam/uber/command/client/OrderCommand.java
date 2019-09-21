@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import static com.epam.uber.command.Page.ACCEPTED_CLIENT_PAGE_PATH;
-import static com.epam.uber.command.Page.ERROR_PAGE_PATH;
-import static com.epam.uber.utils.MessageManager.REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY;
+import static com.epam.uber.command.Page.MAIN_PAGE_PATH;
+import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class OrderCommand implements Command {
 
@@ -38,7 +38,7 @@ public class OrderCommand implements Command {
             return new Page(ACCEPTED_CLIENT_PAGE_PATH, true);
         } catch (ServiceException e) {
             LOGGER.error(e.getMessage(), e);
-            return new Page(ERROR_PAGE_PATH, true, REGISTRATION_UNSUCCESSFUL_MESSAGE_KEY);
+            return new Page(MAIN_PAGE_PATH, true, UNSUCCESSFUL_MESSAGE_KEY);
         } finally {
             orderService.endService();
         }
