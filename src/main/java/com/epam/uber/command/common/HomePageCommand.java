@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 public class EmptyCommand implements Command {
 
     public Page execute(HttpServletRequest request) {
+        System.out.println("hi");
         return new Page(Page.MAIN_PAGE_PATH, false);
     }
+
 }
