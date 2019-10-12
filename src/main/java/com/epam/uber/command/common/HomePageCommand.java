@@ -5,7 +5,7 @@ import com.epam.uber.command.Page;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class EmptyCommand implements Command {
+public class HomePageCommand implements Command {
 
     public Page execute(HttpServletRequest request) {
         System.out.println("hi");
