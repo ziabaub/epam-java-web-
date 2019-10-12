@@ -1,34 +1,28 @@
 package com.epam.uber.entity.user;
 
+import com.epam.uber.entity.Entity;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 public class User extends Entity implements Serializable {
 
+    private int location;
     private String firstName;
     private String lastName;
     private String login;
     private String password;
     private String email;
-    private boolean userRole;
+    private String phone;
+    private String role;
+    private String status;
 
-    public User(int id, String firstName, String lastName, String login, String password, String email, boolean userRole) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.userRole = userRole;
+    public int getLocation() {
+        return location;
     }
 
-    public User(String firstName, String lastName, String login, String password, String email, boolean userRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.userRole = userRole;
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public String getFirstName() {
@@ -71,12 +65,28 @@ public class User extends Entity implements Serializable {
         this.email = email;
     }
 
-    public boolean getUserRole() {
-        return userRole;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUserRole(boolean userRole) {
-        this.userRole = userRole;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
@@ -85,28 +95,19 @@ public class User extends Entity implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return userRole == user.userRole &&
+        return location == user.location &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(email, user.email);
+                Objects.equals(email, user.email) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(role, user.role) &&
+                Objects.equals(status, user.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), firstName, lastName, login, password, email, userRole);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", userRole=" + userRole +
-                '}';
+        return Objects.hash(super.hashCode(), location, firstName, lastName, login, password, email, phone, role, status);
     }
 }

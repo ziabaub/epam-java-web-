@@ -14,7 +14,7 @@
 </head>
 <body class="page">
 <tag:userMenu/>
-<c:if test="${(sessionScope.user == null) && (sessionScope.client == null)}">
+<c:if test="${(sessionScope.user.role == 'client')}">
     <tag:order/>
 </c:if>
 

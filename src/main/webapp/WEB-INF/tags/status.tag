@@ -6,20 +6,9 @@
       rel="stylesheet">
 
 <fmt:bundle basename="page_content">
-    <fmt:message key="taxi.name" var="name"/>
     <fmt:message key="taxi.online" var="online"/>
-    <fmt:message key="taxi.offline" var="offline"/>
     <fmt:message key="taxi.status" var="status"/>
 </fmt:bundle>
 
-    <span>${pageScope.status}</span>
-    <span>
-    <c:choose>
-        <c:when test="${sessionScope.taxi.status == true }">
-            ${pageScope.online}
-        </c:when>
-        <c:otherwise>
-            ${pageScope.offline}
-        </c:otherwise>
-    </c:choose>
-</span>
+<span>${pageScope.status}</span>
+<span>${pageScope.online}</span>

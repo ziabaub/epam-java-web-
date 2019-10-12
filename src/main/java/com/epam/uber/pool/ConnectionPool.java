@@ -1,13 +1,11 @@
 package com.epam.uber.pool;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Deque;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -16,22 +14,12 @@ public class ConnectionPool {
 
     private static final Logger LOGGER = Logger.getLogger(ConnectionPool.class);
 
-    private static final Lock instanceLocker;
-    private static final Lock poolLocker;
-    private static final Condition poolCondition;
-
+    private static final AtomicBoolean instanceIsNotAvailable = new AtomicBoolean(true);
+    private static final Lock instanceLocker = new ReentrantLock();
+    private static final Lock poolLocker = new ReentrantLock();
     private static ConnectionPool instance;
-    private static final AtomicBoolean instanceIsNotAvailable;
 
     private final Deque<Connection> pool;
-
-    static {
-        instance = null;
-        instanceLocker = new ReentrantLock();
-        poolLocker = new ReentrantLock();
-        poolCondition = poolLocker.newCondition();
-        instanceIsNotAvailable = new AtomicBoolean(true);
-    }
 
     private ConnectionPool() {
         ConnectionCreator connectionCreator = new ConnectionCreator();
@@ -55,29 +43,21 @@ public class ConnectionPool {
     }
 
     public Connection getConnection() {
-        Connection connection = null ;
+        Connection connection = null;
         poolLocker.lock();
         try {
-            if (pool.isEmpty()) {
-                poolCondition.await();
-            }
             connection = pool.poll();
-        } catch (InterruptedException e) {
-            LOGGER.log(Level.WARN, "Interrupted!", e);
-            Thread.currentThread().interrupt();
         } finally {
             poolLocker.unlock();
         }
 
         return connection;
     }
-
+//todo check that connection came fronm this pool originally
     public void returnConnection(Connection connection) {
         poolLocker.lock();
-
         try {
             pool.addLast(connection);
-            poolCondition.signal();
         } finally {
             poolLocker.unlock();
         }

@@ -26,6 +26,4 @@ public class CommandFactory {
         }
         return currCommand;
     }
-
-
 }

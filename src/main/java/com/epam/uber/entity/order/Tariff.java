@@ -1,11 +1,13 @@
-package com.epam.uber.entity;
+package com.epam.uber.entity.order;
 
-import com.epam.uber.entity.user.Entity;
+import com.epam.uber.entity.Entity;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Tariff extends Entity {
+public class Tariff extends Entity implements Serializable {
     private LocalDateTime start;
     private double rate;
 
@@ -21,6 +23,10 @@ public class Tariff extends Entity {
     }
 
     public Tariff() {
+    }
+
+    public LocalDate getDate(){
+        return start.toLocalDate();
     }
 
     public LocalDateTime getStart() {

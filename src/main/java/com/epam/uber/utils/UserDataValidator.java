@@ -13,26 +13,19 @@ public class UserDataValidator {
 
 
     public boolean checkData(String firstName, String lastName, String login, String password, String email) {
-        if (notMatchRegex(login, LOGIN_PATTERN)) {
+        if (!matchPattern(login, LOGIN_PATTERN)) {
             return false;
         }
-        if (notMatchRegex(password, PASSWORD_PATTERN)) {
+        if (!matchPattern(password, PASSWORD_PATTERN)) {
             return false;
         }
-        if (notMatchRegex(firstName, NAME_PATTERN)) {
+        if (!matchPattern(firstName, NAME_PATTERN)) {
             return false;
         }
-        if (notMatchRegex(lastName, NAME_PATTERN)) {
+        if (!matchPattern(lastName, NAME_PATTERN)) {
             return false;
         }
-        return notMatchRegex(email, EMAIL_PATTERN);
-    }
-
-    private boolean notMatchRegex(String data, String regex) {
-        if (data == null) {
-            return true;
-        }
-        return !matchPattern(data, regex);
+        return matchPattern(email, EMAIL_PATTERN);
     }
 
     private boolean matchPattern(String data, String currentPattern) {

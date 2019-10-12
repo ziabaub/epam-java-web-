@@ -20,7 +20,9 @@
 </head>
 <body class="page">
 <tag:userMenu/>
+
 <div class="table_taxi_admin">
+    <p class="error">${requestScope.message}</p>
     <table>
         <tr>
             <th><span>&#8470;</span></th>
@@ -28,21 +30,20 @@
             <td>${pageScope.lastname}</td>
             <td>${pageScope.login} </td>
             <td>${pageScope.email} </td>
-            <td>${pageScope.location}</td>
         </tr>
         <c:forEach var="taxi" items="${sessionScope.list}">
+            <c:set var="count" value="${pageScope.count+1}"/>
             <tr>
-                <td>${taxi.id}</td>
+                <td>${count}</td>
                 <td>${taxi.firstName}</td>
                 <td>${taxi.lastName}</td>
                 <td>${taxi.login}</td>
                 <td>${taxi.email}</td>
-                <td>${taxi.location}</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/controller" method="post">
                         <input type="hidden" name="order_id" value=${taxi.id}>
                         <input type="hidden" name="command" value="delete_taxi"/>
-                        <input class="log_accept" type="submit" value="delete">
+                        <button onclick="confirm('sure you want to delete ${taxi.firstName}')" class="log_accept" type="submit" value="delete">delete</button>
                     </form>
                 </td>
             </tr>

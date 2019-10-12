@@ -1,6 +1,6 @@
-
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isErrorPage="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <fmt:bundle basename="page_content">
@@ -17,12 +17,19 @@
     <title>${pageScope.title}</title>
 </head>
 <body class="page">
-<tag:userMenu/>
-<div class="error_wrapper">
-    <p>${pageScope.request_message} ${pageContext.errorData.requestURI} is failed</p>
-    <p>${pageScope.servlet_message} ${pageContext.errorData.servletName}</p>
-    <p>${pageScope.status_message} ${pageContext.errorData.statusCode}</p>
-    <p>${pageScope.exception_message} ${pageContext.errorData.throwable}</p>
+<h1>Opps...</h1>
+<p class="error_wrapper">
+<p>${pageScope.exception_message} ${pageContext.errorData.throwable}</p>
+<p>${pageScope.request_message} ${pageContext.errorData.requestURI} is failed</p>
+<p>${pageScope.servlet_message} ${pageContext.errorData.servletName}</p>
+<p>${pageScope.status_message} ${pageContext.errorData.statusCode}</p>
+
+<%--    <p>Stack trace:</p>--%>
+<%--    <c:forEach var = "trace"--%>
+<%--               items = "${pageContext.exception.stackTrace}">--%>
+<%--        <p>${trace}</p>--%>
+<%--    </c:forEach>--%>
 </div>
 </body>
+
 </html>

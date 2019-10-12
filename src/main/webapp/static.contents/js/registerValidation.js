@@ -2,7 +2,10 @@ let passChecked = false;
 let firstNameChecked = false;
 let lastNameChecked = false;
 let loginChecked = false;
+let phoneChecked = false;
+let roleChecked = false;
 
+let phoneRegex = /\((17|29|33|44)\)[0-9]{8}/;
 let logRegEx = /\W/;
 let passwordRegEx = /\d\W/;
 let peek = /[.,!?()\\|\[\]`@$^*-+=:;№#"'_\s></%&*]+/;
@@ -13,6 +16,7 @@ let minLoginLength = 5;
 let minPasswordLength = 4;
 let notFoundIndex = -1;
 
+let phone = document.getElementById("phone");
 let password = document.getElementById("password");
 let confirmPassword = document.getElementById("confirm_password");
 let submit = document.getElementById("submit");
@@ -20,10 +24,10 @@ let firstName = document.getElementById("first_name");
 let lastName = document.getElementById("last_name");
 let login = document.getElementById("login");
 let email = document.getElementById("email");
-let role = document.getElementById("user_role");
+let role = document.getElementById("role");
 
 let submitChange = function () {
-    if (firstNameChecked && lastNameChecked && passChecked && loginChecked) {
+    if (firstNameChecked && lastNameChecked && passChecked && loginChecked && phoneChecked && roleChecked) {
         submit.disabled = false;
         submit.classList.add("active");
     } else {
@@ -55,6 +59,18 @@ let checkPassword = function () {
     } else {
         setBackgroundFieldRed(confirmPassword);
         passChecked = false;
+    }
+    submitChange();
+};
+
+let checkRole = function () {
+    let roles = ['admin', 'client', 'taxi'];
+    if (roles.includes(role.value)){
+        setBackgroundFieldGreen(role);
+        roleChecked = true;
+    } else {
+        setBackgroundFieldRed(role);
+        roleChecked = false;
     }
     submitChange();
 };
@@ -107,3 +123,17 @@ let checkLogin = function () {
     }
     submitChange();
 };
+
+function checkPhone() {
+    if (phone.value.search(phoneRegex) > notFoundIndex ||
+        phone.value.length < 8) {
+        setBackgroundFieldRed(phone);
+        phoneChecked = false;
+    } else {
+        setBackgroundFieldGreen(phone);
+        phoneChecked = true;
+    }
+    submitChange();
+};
+
+

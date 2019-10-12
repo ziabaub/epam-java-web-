@@ -4,44 +4,30 @@ import com.epam.uber.command.Command;
 import com.epam.uber.command.Page;
 import com.epam.uber.entity.user.User;
 import com.epam.uber.exceptions.ServiceException;
-import com.epam.uber.service.impl.UserServiceImpl;
-import org.apache.log4j.Logger;
+import com.epam.uber.service.UserServiceImpl;
+import com.epam.uber.utils.PasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 import static com.epam.uber.utils.MessageManager.LOGIN_ERROR_MESSAGE_KEY;
 
 public class LoginCommand implements Command {
-    private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
 
     @Override
-    public Page execute(HttpServletRequest request) {
-
-        try {
-            Optional<User> user = getUser(request);
-            if (!user.isPresent()) {
-                return new Page(Page.LOGIN_PAGE_PATH, false, LOGIN_ERROR_MESSAGE_KEY);
-            }
-            HttpSession currentSession = request.getSession();
-            currentSession.setAttribute(USER_ATTRIBUTE, user.get());
-
-            return new Page(Page.MAIN_PAGE_PATH, false);
-        } catch (ServiceException e) {
-            LOGGER.error(e.getMessage(), e);
+    public Page execute(HttpServletRequest request) throws ServiceException {
+        UserServiceImpl userService = new UserServiceImpl();
+        HttpSession currentSession = request.getSession();
+        String login = request.getParameter(LOGIN_PARAMETER);
+        String password = PasswordEncoder.encode(request.getParameter(PASSWORD_PARAMETER));
+        User user = userService.login(login, password);
+        if (user == null) {
             return new Page(Page.LOGIN_PAGE_PATH, false, LOGIN_ERROR_MESSAGE_KEY);
         }
+        currentSession.setAttribute(USER_ATTRIBUTE, user);
+        return new Page(Page.MAIN_PAGE_PATH, false);
+
     }
 
-    private Optional<User> getUser(HttpServletRequest request) throws ServiceException {
-        UserServiceImpl userService = new UserServiceImpl();
-        try {
-            String login = request.getParameter(LOGIN_PARAMETER);
-            String password = request.getParameter(PASSWORD_PARAMETER);
-            return userService.login(login, password);
-        } finally {
-            userService.endService();
-        }
-    }
+
 }

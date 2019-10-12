@@ -1,9 +1,10 @@
 package com.epam.uber.dao.impl;
 
 import com.epam.uber.dao.AbstractDAO;
-import com.epam.uber.entity.client.OrderInfo;
 import com.epam.uber.entity.order.Order;
+import com.epam.uber.entity.order.OrderInfo;
 import com.epam.uber.exceptions.DAOException;
+import com.epam.uber.utils.ZoneMapper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,13 +41,20 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         return getEntity(sqlQuery, params);
     }
 
+    public void deleteOrderById(int id) throws DAOException {
+        String sqlQuery = "delete from journey where id = ? ";
+        List<String> params = Collections.singletonList(String.valueOf(id));
+        executeQuery(sqlQuery, params);
+    }
+
     public int insertOrder(Order order) throws DAOException {
-        String fields = "(date, costumer_id, tariff_id,from_location_id, to_location_id, cost, status)";
+        String fields = "(date, customer_id, tariff_id,from_location_id, to_location_id, cost, status)";
         return insert(order, fields);
     }
 
-    public List<OrderInfo> selectOrdersByDriverId(int id) throws DAOException {
-        String condition = "journey.taxi_id =" + id;
+
+    public List<OrderInfo> selectFinishedOrders(int id) throws DAOException {
+        String condition = "journey.taxi_id = " + id + " and journey.status = 'done'";
         return getOrderInfos(condition);
     }
 
@@ -55,22 +63,18 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         return getOrderInfos(condition);
     }
 
-    public void deleteByTaxiId(int id) throws DAOException {
-        String sqlQuery = "DELETE FROM journey WHERE taxi_id= ?";
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        executeQuery(sqlQuery, params);
-    }
-
     private List<OrderInfo> getOrderInfos(String condition) throws DAOException {
-        String sqlQuery =
-                "select journey.id as id,date ,l.zone as current_zone , l2.zone as destination_zone , journey.cost from journey " +
-                        "inner join " +
-                        "location l on journey.from_location_id = l.id " +
-                        "inner join location l2 on to_location_id =l2.id where " + condition + " order by date";
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append("select journey.id as id,date ,l.zone as current_zone , l2.zone as destination_zone , journey.cost from journey ")
+                .append("inner join ")
+                .append("location l on journey.from_location_id = l.id ")
+                .append("inner join location l2 on to_location_id =l2.id where ")
+                .append(condition)
+                .append(" order by date");
         try {
             Statement statement = connection.createStatement();
             List<OrderInfo> orders = new ArrayList<>();
-            ResultSet result = statement.executeQuery(sqlQuery);
+            ResultSet result = statement.executeQuery(sqlQuery.toString());
             while (result.next()) {
                 int id = result.getInt(ID_COLUMN_LABEL);
                 Date d = result.getDate("date");
@@ -78,7 +82,9 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
                 int currZone = result.getInt("current_zone");
                 int destinationZon = result.getInt("destination_zone");
                 int cost = result.getInt("cost");
-                orders.add(new OrderInfo(id, date, currZone, destinationZon, cost));
+                String currArea = ZoneMapper.getArea(currZone);
+                String destArea = ZoneMapper.getArea(destinationZon);
+                orders.add(new OrderInfo(id, date, currArea, destArea, cost));
             }
             return orders;
         } catch (SQLException e) {
@@ -103,10 +109,11 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
     @Override
     public Order buildEntity(ResultSet result) throws DAOException {
         try {
+            Order order = new Order();
             int id = result.getInt(ID_COLUMN_LABEL);
             Date date = result.getDate("date");
             int taxiId = result.getInt("taxi_id");
-            int costumerId = result.getInt("costumer_id");
+            int customerId = result.getInt("customer_id");
             int tariffId = result.getInt("tariff_id");
             int from = result.getInt("from_location_id");
             int to = result.getInt("to_location_id");
@@ -114,7 +121,17 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
             String status = result.getString("status");
             int rate = result.getInt("rate");
 
-            return new Order(id, date, taxiId, costumerId, tariffId, from, to, cost, status, rate);
+            order.setId(id);
+            order.setDate(date);
+            order.setTaxiId(taxiId);
+            order.setCostumerId(customerId);
+            order.setTariffId(tariffId);
+            order.setCurrLocationId(from);
+            order.setDestinationLocationId(to);
+            order.setCost(cost);
+            order.setStatus(status);
+            order.setRate(rate);
+            return order;
         } catch (SQLException e) {
             throw new DAOException(e.getMessage(), e);
         }

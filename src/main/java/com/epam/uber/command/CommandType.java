@@ -26,7 +26,7 @@ public enum CommandType {
     FIND_TAXI(new FindTaxisCommand()),
     EDIT_RATE(new ChangeRateCommand()),
     DELETE_TAXI(new DeleteTaxiCommand()),
-    ADD_PERMISSION(new AddPermissionCommand()),
+    RATE_HISTORY(new RateHistoryCommand()),
 
     /**
      * Common commands.
@@ -39,8 +39,6 @@ public enum CommandType {
     /**
      * Taxi's commands.
      */
-    GO_ONLINE(new GoOnlineCommand()),
-    GO_OFFLINE(new GoOfflineCommand()),
     DISPATCHER(new DispatcherCommand()),
     ACCEPT(new AcceptCommand()),
     REACH_DESTINATION(new ReachDestinationCommand()),

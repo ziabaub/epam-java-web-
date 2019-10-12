@@ -1,6 +1,6 @@
 package com.epam.uber.utils;
 
-import com.epam.uber.entity.client.OrderInfo;
+import com.epam.uber.entity.order.OrderInfo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,9 +15,11 @@ public class OrderFilter {
 
     public List<OrderInfo> getWaitingOrders(int zone) {
         List<OrderInfo> availableOrder = new ArrayList<>();
+        int currZone;
         for (OrderInfo o : orders) {
-            boolean lessThenMinute = isWaiting(o.getDate());
-            boolean isNear = isNear(zone, o.getClientZone());
+            boolean lessThenMinute = isWaiting(o.getDateTime());
+            currZone = ZoneMapper.getZone(o.getCurrArea());
+            boolean isNear = isNear(zone, currZone);
             if (isNear) {
                 availableOrder.add(o);
             }

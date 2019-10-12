@@ -1,5 +1,7 @@
 package com.epam.uber.entity.user;
 
+import com.epam.uber.entity.Entity;
+
 import java.io.Serializable;
 import java.util.Objects;
 

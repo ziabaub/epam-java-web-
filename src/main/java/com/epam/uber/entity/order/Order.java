@@ -1,6 +1,6 @@
 package com.epam.uber.entity.order;
 
-import com.epam.uber.entity.user.Entity;
+import com.epam.uber.entity.Entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,28 +18,6 @@ public class Order extends Entity implements Serializable {
     private double cost;
     private String status;
     private int rate;
-
-    public Order(int id, Date date, int taxiId, int costumerId, int tariffId, int currLocationId, int destinationLocationId, double cost, String status, int rate) {
-        super(id);
-        this.date = date;
-        this.taxiId = taxiId;
-        this.costumerId = costumerId;
-        this.tariffId = tariffId;
-        this.currLocationId = currLocationId;
-        this.destinationLocationId = destinationLocationId;
-        this.cost = cost;
-        this.status = status;
-        this.rate = rate;
-    }
-
-    public Order( int costumerId, int tariffId, int currLocationId, int destinationLocationId, double cost, String status) {
-        this.costumerId = costumerId;
-        this.tariffId = tariffId;
-        this.currLocationId = currLocationId;
-        this.destinationLocationId = destinationLocationId;
-        this.cost = cost;
-        this.status = status;
-    }
 
     public Date getDate() {
         return date;

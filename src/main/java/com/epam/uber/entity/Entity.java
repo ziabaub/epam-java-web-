@@ -1,4 +1,4 @@
-package com.epam.uber.entity.user;
+package com.epam.uber.entity;
 
 import java.util.Objects;
 

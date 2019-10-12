@@ -1,53 +1,58 @@
-package com.epam.uber.entity.client;
+package com.epam.uber.entity.order;
 
-import com.epam.uber.entity.user.Entity;
+import com.epam.uber.entity.Entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class OrderInfo extends Entity implements Serializable {
     private LocalDateTime date;
-    private int clientZone;
-    private int destinationZone;
+    private String currArea;
+    private String destArea;
     private int cost ;
 
-    public OrderInfo(int id, LocalDateTime date, int clientZone , int destinationZone,int cost ) {
+    public OrderInfo(int id, LocalDateTime date, String currArea, String destArea, int cost ) {
         super(id);
         this.date = date;
-        this.clientZone = clientZone;
-        this.destinationZone = destinationZone;
+        this.currArea = currArea;
+        this.destArea = destArea;
         this.cost = cost;
     }
 
-    public OrderInfo(int id, int destinationZone, int cost) {
+    public OrderInfo(int id, String destArea, int cost) {
         super(id);
-        this.destinationZone = destinationZone;
+        this.destArea = destArea;
         this.cost = cost;
     }
 
-    public int getDestinationZone() {
-        return destinationZone;
+    public String getDestArea() {
+        return destArea;
     }
 
-    public void setDestinationZone(int destinationZone) {
-        this.destinationZone = destinationZone;
+    public void setDestArea(String destArea) {
+        this.destArea = destArea;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDateTime getDateTime() {
         return date;
+    }
+
+    public LocalDate getDate(){
+        return date.toLocalDate();
     }
 
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public int getClientZone() {
-        return clientZone;
+    public String getCurrArea() {
+        return currArea;
     }
 
-    public void setClientZone(int clientZone) {
-        this.clientZone = clientZone;
+    public void setCurrArea(String currArea) {
+        this.currArea = currArea;
     }
 
     public int getCost() {
@@ -64,23 +69,23 @@ public class OrderInfo extends Entity implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         OrderInfo orderInfo = (OrderInfo) o;
-        return clientZone == orderInfo.clientZone &&
-                destinationZone == orderInfo.destinationZone &&
+        return currArea.equals(orderInfo.currArea) &&
+                destArea.equals(orderInfo.destArea) &&
                 cost == orderInfo.cost &&
                 Objects.equals(date, orderInfo.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), date, clientZone, destinationZone, cost);
+        return Objects.hash(super.hashCode(), date, currArea, destArea, cost);
     }
 
     @Override
     public String toString() {
         return "OrderInfo{" +
                 "date=" + date +
-                ", clientZone=" + clientZone +
-                ", destinationZone=" + destinationZone +
+                ", clientZone=" + currArea +
+                ", destinationZone=" + destArea +
                 ", cost=" + cost +
                 '}';
     }

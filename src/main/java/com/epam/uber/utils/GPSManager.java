@@ -1,6 +1,6 @@
 package com.epam.uber.utils;
 
-import com.epam.uber.entity.Location;
+import com.epam.uber.entity.order.Location;
 
 import java.util.Random;
 

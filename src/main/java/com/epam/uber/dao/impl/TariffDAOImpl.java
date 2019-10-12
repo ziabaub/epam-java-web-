@@ -1,7 +1,7 @@
 package com.epam.uber.dao.impl;
 
 import com.epam.uber.dao.AbstractDAO;
-import com.epam.uber.entity.Tariff;
+import com.epam.uber.entity.order.Tariff;
 import com.epam.uber.exceptions.DAOException;
 
 import java.sql.Connection;
@@ -30,7 +30,6 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
 
     private Tariff getRate(String sqlQuery) throws DAOException {
         try {
-
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             if (resultSet.next()) {
@@ -43,9 +42,25 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
 
     }
 
-    public int insertTariff(Tariff tariff) throws DAOException {
+    public void insertTariff(Tariff tariff) throws DAOException {
         String fields = "(start_time, rate)";
-        return insert(tariff, fields);
+        insert(tariff, fields);
+    }
+
+    public List<Tariff> selectAllTariff()throws DAOException  {
+        String sqlQuery = "select * from tariff ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sqlQuery);
+            List<Tariff> tariffs = new ArrayList<>();
+            while (result.next()){
+                Tariff tariff = buildEntity(result);
+                tariffs.add(tariff);
+            }
+            return tariffs;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -77,6 +92,4 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
     }
-
-
 }

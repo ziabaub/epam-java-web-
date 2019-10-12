@@ -5,14 +5,14 @@ import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+//implement Connection interface see Proxy pattern
+public class ProxyConnection implements AutoCloseable {
 
-public class ConnectionManager implements AutoCloseable {
-
-    private static final Logger LOGGER = Logger.getLogger(ConnectionManager.class);
+    private static final Logger LOGGER = Logger.getLogger(ProxyConnection.class);
     private final Connection connection;
     private final ConnectionPool connectionPool;
 
-    public ConnectionManager() {
+    public ProxyConnection() {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.getConnection();
     }

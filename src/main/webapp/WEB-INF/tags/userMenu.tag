@@ -21,6 +21,8 @@
     <fmt:message key="menu.add_taxi" var="add_taxi"/>
     <fmt:message key="menu.find_taxi" var="find_taxi"/>
     <fmt:message key="admin.edit_rate" var="rate"/>
+    <fmt:message key="menu.hostory.rate" var="history_rate"/>
+
 </fmt:bundle>
 
 <header class="header">
@@ -45,7 +47,8 @@
                 <a class="logout_a"
                    href="${pageContext.request.contextPath}/pages/common/login.jsp" id="login">${pageScope.login}</a>
                 <a class="register_login_a"
-                   href="${pageContext.request.contextPath}/pages/common/register.jsp" id="register">${pageScope.register}</a>
+                   href="${pageContext.request.contextPath}/pages/common/register.jsp"
+                   id="register">${pageScope.register}</a>
             </c:when>
             <c:otherwise>
                 <span class="hello_text">${pageScope.hello} ${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
@@ -65,24 +68,10 @@
                 </a>
             </li>
             <c:choose>
-                <c:when test="${sessionScope.user.userRole == false }">
-                    <c:choose>
-                        <c:when test="${sessionScope.taxi.status == true }">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/controller?command=go_offline">${pageScope.go_offline}</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/controller?command=go_online">${pageScope.go_online}</a>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:if test="${sessionScope.taxi != null}">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/controller?command=dispatcher">${pageScope.order}</a>
-                        </li>
-                    </c:if>
+                <c:when test="${sessionScope.user.role == 'taxi' }">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/controller?command=dispatcher">${pageScope.order}</a>
+                    </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/controller?command=history">${pageScope.history}</a>
                     </li>
@@ -93,15 +82,15 @@
                         <tag:status/>
                     </li>
                 </c:when>
-                <c:otherwise>
+                <c:when test="${sessionScope.user.role == 'admin'}">
                     <li>
                         <a href="${pageContext.request.contextPath}/controller?command=show_taxis">${pageScope.show_taxis}</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/pages/admin/addTaxi.jsp">${pageScope.add_taxi}</a>
+                        <a href="${pageContext.request.contextPath}/pages/admin/editRate.jsp">${pageScope.rate}</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/pages/admin/editRate.jsp">${pageScope.rate}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=rate_history">${pageScope.history_rate}</a>
                     </li>
                     <li>
                         <form id="find" name="FindForm" method="POST"
@@ -111,7 +100,10 @@
                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </li>
-                </c:otherwise>
+                </c:when>
+                <c:otherwise>
+
+            </c:otherwise>
             </c:choose>
         </c:if>
     </ul>

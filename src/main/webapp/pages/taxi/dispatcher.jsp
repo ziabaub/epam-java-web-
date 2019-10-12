@@ -28,24 +28,25 @@
             <td>${pageScope.cost}</td>
         </tr>
         <c:forEach var="taxi" items="${sessionScope.list}">
+            <c:set var="count" value="${pageScope.count+1}"/>
             <tr>
-                <td>${taxi.id}</td>
-                <td>${taxi.clientZone}</td>
-                <td>${taxi.destinationZone}</td>
-                <td>${taxi.cost}</td>
+                <td>${count}</td>
+                <td>${taxi.currArea}</td>
+                <td>${taxi.destArea}</td>
+                <td>${taxi.cost} $</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/controller" method="post">
-                        <input type="hidden" name="order_destination" value=${taxi.destinationZone}>
+                        <input type="hidden" name="order_destination" value=${taxi.destArea}>
                         <input type="hidden" name="order_cost" value=${taxi.cost}>
                         <input type="hidden" name="order_id" value=${taxi.id}>
                         <input type="hidden" name="command" value="accept"/>
-                        <input class="log_accept" type="submit" value="ok">
+                        <input class="log_accept" type="submit" value="accept">
                     </form>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <c:if test="${sessionScope.traveler != null}">
+    <c:if test="${sessionScope.order != null}">
         <div class="header">
             <h1 class="top">${pageScope.curr_order}</h1>
         </div>
@@ -56,9 +57,9 @@
                 <td>${pageScope.cost}</td>
             </tr>
             <tr>
-                <td>${sessionScope.traveler.id}</td>
-                <td>${sessionScope.traveler.destinationZone}</td>
-                <td>${sessionScope.traveler.cost}</td>
+                <td>1</td>
+                <td>${sessionScope.order.destArea}</td>
+                <td>${sessionScope.order.cost} $</td>
                 <td>
                     <form action="${pageContext.request.contextPath}/controller" method="post">
                         <input type="hidden" name="command" value="reach_destination"/>

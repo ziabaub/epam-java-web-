@@ -30,12 +30,13 @@
             <td>${pageScope.cost}</td>
         </tr>
         <c:forEach var="taxi" items="${sessionScope.list}">
+            <c:set var="count" value="${pageScope.count+1}"/>
             <tr>
-                <td>${taxi.id}</td>
+                <td>${count}</td>
                 <td>${taxi.date}</td>
-                <td>${taxi.clientZone}</td>
-                <td>${taxi.destinationZone}</td>
-                <td>${taxi.cost}</td>
+                <td>${taxi.currArea}</td>
+                <td>${taxi.destArea}</td>
+                <td>${taxi.cost} $</td>
             </tr>
         </c:forEach>
     </table>

@@ -1,6 +1,6 @@
-package com.epam.uber.entity;
+package com.epam.uber.entity.order;
 
-import com.epam.uber.entity.user.Entity;
+import com.epam.uber.entity.Entity;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -13,6 +13,7 @@ public class MessageManager {
     public static final String COMMAND_ERROR_MESSAGE_KEY = "message.command_error";
     public static final String UNSUCCESSFUL_MESSAGE_KEY = "Unsuccessful";
 
+
     private MessageManager() {
     }
 

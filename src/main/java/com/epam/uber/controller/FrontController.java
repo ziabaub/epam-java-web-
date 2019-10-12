@@ -5,7 +5,9 @@ package com.epam.uber.controller;
 import com.epam.uber.command.Command;
 import com.epam.uber.command.Page;
 import com.epam.uber.command.factory.CommandFactory;
+import com.epam.uber.exceptions.ServiceException;
 import com.epam.uber.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,9 +20,11 @@ import static com.epam.uber.command.Command.MESSAGE_ATTRIBUTE;
 import static com.epam.uber.utils.MessageManager.NONE_MESSAGE_KEY;
 
 public class FrontController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(FrontController.class);
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-            process(request, response);
+        process(request, response);
 
 
     }
@@ -38,17 +42,22 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        Page page;
-        CommandFactory commandFactory = new CommandFactory();
-        Command action = commandFactory.getCommand(req);
-        page = action.execute(req);
-
-        boolean isRedirect = page.isRedirect();
-        if (isRedirect) {
-            redirect(page, req, resp);
-        } else {
-            forward(page, req, resp);
+        try {
+            CommandFactory commandFactory = new CommandFactory();
+            Command action = commandFactory.getCommand(req);
+            Page page = action.execute(req);
+            boolean isRedirect = page.isRedirect();
+            if (isRedirect) {
+                redirect(page, req, resp);
+            } else {
+                forward(page, req, resp);
+            }
+        } catch (ServiceException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new ServletException(e.getMessage(), e);
         }
+
+
     }
 
     private void redirect(Page page, HttpServletRequest request, HttpServletResponse response) throws IOException {

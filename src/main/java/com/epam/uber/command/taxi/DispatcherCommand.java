@@ -2,41 +2,31 @@ package com.epam.uber.command.taxi;
 
 import com.epam.uber.command.Command;
 import com.epam.uber.command.Page;
-import com.epam.uber.entity.client.OrderInfo;
-import com.epam.uber.entity.user.Taxi;
+import com.epam.uber.entity.order.OrderInfo;
+import com.epam.uber.entity.user.User;
 import com.epam.uber.exceptions.ServiceException;
-import com.epam.uber.service.impl.OrderServiceImpl;
+import com.epam.uber.service.OrderServiceImpl;
 import com.epam.uber.utils.OrderFilter;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.epam.uber.command.Page.DISPATCHER_PAGE_PATH;
-import static com.epam.uber.utils.MessageManager.UNSUCCESSFUL_MESSAGE_KEY;
 
 public class DispatcherCommand implements Command {
-    private static final Logger LOGGER = Logger.getLogger(DispatcherCommand.class);
 
     @Override
-    public Page execute(HttpServletRequest request) {
+    public Page execute(HttpServletRequest request) throws ServiceException {
         OrderServiceImpl orderService = new OrderServiceImpl();
-        try {
-            HttpSession session = request.getSession();
-            Taxi taxi = (Taxi) session.getAttribute(TAXI_ATTRIBUTE);
-            int taxiId = taxi.getId();
-            List<OrderInfo> orders = orderService.getAvailableOrders();
-            OrderFilter filter = new OrderFilter(orders);
-            orders = filter.getWaitingOrders(taxiId);
-            session.setAttribute(LIST_ATTRIBUTE, orders);
-            return new Page(DISPATCHER_PAGE_PATH, true);
-        } catch (ServiceException e) {
-            LOGGER.error(e.getMessage(), e);
-            return new Page(DISPATCHER_PAGE_PATH, true, UNSUCCESSFUL_MESSAGE_KEY);
-        } finally {
-            orderService.endService();
-        }
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(USER_ATTRIBUTE);
+        int taxiId = user.getId();
+        List<OrderInfo> orders = orderService.dispatchOrders();
+        OrderFilter filter = new OrderFilter(orders);
+        orders = filter.getWaitingOrders(taxiId);
+        session.setAttribute(LIST_ATTRIBUTE, orders);
+        return new Page(DISPATCHER_PAGE_PATH, true);
     }
 
 }

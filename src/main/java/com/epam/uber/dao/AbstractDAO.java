@@ -1,19 +1,15 @@
 package com.epam.uber.dao;
 
-import com.epam.uber.entity.user.Entity;
+import com.epam.uber.entity.Entity;
 import com.epam.uber.exceptions.DAOException;
 
 import java.sql.*;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
 
     public static final String ID_COLUMN_LABEL = "id";
-
     private static final String INSERT_QUERY_KEY = "INSERT INTO %s %s VALUES %s";
-    private static final String DELETE_BY_ID_QUERY_KEY = "DELETE FROM %s WHERE id= ?";
-
     private final Connection connection;
     private final String tableName;
 
@@ -41,7 +37,7 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
     }
 
     protected boolean executeQuery(String sqlQuery, List<String> parameters) throws DAOException {
-        try (PreparedStatement preparedStatement = preparedStatementForQuery(sqlQuery, parameters)) {
+        try (PreparedStatement preparedStatement = buildStatement(sqlQuery, parameters)) {
             int queryResult = preparedStatement.executeUpdate();
             return queryResult != 0;
         } catch (SQLException exception) {
@@ -49,7 +45,7 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
         }
     }
 
-    private PreparedStatement preparedStatementForQuery(String sqlQuery, List<String> parameters) throws DAOException {
+    private PreparedStatement buildStatement(String sqlQuery, List<String> parameters) throws DAOException {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             if (parameters != null) {
@@ -79,7 +75,7 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
 
     protected T getEntity(String sqlQuery, List<String> params) throws DAOException {
         try {
-            PreparedStatement preparedStatement = preparedStatementForQuery(sqlQuery, params);
+            PreparedStatement preparedStatement = buildStatement(sqlQuery, params);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return buildEntity(resultSet);
@@ -90,14 +86,7 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
         }
     }
 
-    @Override
-    public boolean deleteById(int id) throws DAOException {
-        List<String> params = Collections.singletonList(String.valueOf(id));
-        String sqlQuery = String.format(DELETE_BY_ID_QUERY_KEY, tableName);
-        return executeQuery(sqlQuery, params);
-    }
-
-    @Override
+    @Override //todio protected call prepareVakues
     public Integer insert(T entity, String fields) throws DAOException {
         List<String> params = getEntityParameters(entity);
         String paramsCount = generateValuesCount(params.size());

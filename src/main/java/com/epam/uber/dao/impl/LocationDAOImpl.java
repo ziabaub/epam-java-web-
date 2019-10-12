@@ -1,7 +1,7 @@
 package com.epam.uber.dao.impl;
 
 import com.epam.uber.dao.AbstractDAO;
-import com.epam.uber.entity.Location;
+import com.epam.uber.entity.order.Location;
 import com.epam.uber.exceptions.DAOException;
 
 import java.sql.Connection;
@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LocationDAOImpl extends AbstractDAO<Location> {
@@ -21,6 +22,12 @@ public class LocationDAOImpl extends AbstractDAO<Location> {
     public int insertLocation(Location location) throws DAOException {
         String fields = "(country,city,zone)";
         return insert(location, fields);
+    }
+
+    public void deleteById(int id) throws DAOException {
+        List<String> params = Collections.singletonList(String.valueOf(id));
+        String sqlQuery = "delete  from location where id = ?";
+        executeQuery(sqlQuery, params);
     }
 
     @Override
