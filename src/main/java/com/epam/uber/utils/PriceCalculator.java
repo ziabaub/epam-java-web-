@@ -8,7 +8,6 @@ public class PriceCalculator {
     }
 
     public static double calculatePrice(int from, int to, Tariff tariff) {
-        System.out.println("hi");
         int zoneCount = Math.abs(from - to);
         double rate = tariff.getRate();
         return zoneCount * rate;
