@@ -2,39 +2,37 @@ package com.epam.uber.dao;
 
 import com.epam.uber.entity.Entity;
 import com.epam.uber.exceptions.DAOException;
+import com.epam.uber.pool.ConnectionManager;
 
 import java.sql.*;
 import java.util.List;
 
-public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
+public abstract class AbstractDAO<T extends Entity> {
 
-    public static final String ID_COLUMN_LABEL = "id";
-    private static final String INSERT_QUERY_KEY = "INSERT INTO %s %s VALUES %s";
-    private final Connection connection;
-    private final String tableName;
+    protected static final String ID_COLUMN_LABEL = "id";
+    private static ThreadLocal<ConnectionManager> threadLocal = new ThreadLocal<>();
 
 
-    public AbstractDAO(Connection connection, String tableName) {
-        this.tableName = tableName;
-        this.connection = connection;
+
+    public void startTransaction() {
+        ConnectionManager connectionManager = new ConnectionManager();
+        threadLocal.set(connectionManager);
     }
 
+    public void rollbackTransaction() {
+        ConnectionManager connectionManager = threadLocal.get();
+        connectionManager.rollbackTransaction();
+    }
+
+    public void close() {
+        ConnectionManager connectionManager = threadLocal.get();
+        connectionManager.close();
+        threadLocal.remove();
+    }
 
     protected abstract List<String> getEntityParameters(T entity);
 
     protected abstract T buildEntity(ResultSet result) throws DAOException;
-
-    private int getLastInsertId() throws DAOException {
-        try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT last_insert_id()");
-            if (resultSet.next()) {
-                return resultSet.getInt("last_insert_id()");
-            }
-            return 0;
-        } catch (SQLException exception) {
-            throw new DAOException(exception.getMessage(), exception);
-        }
-    }
 
     protected boolean executeQuery(String sqlQuery, List<String> parameters) throws DAOException {
         try (PreparedStatement preparedStatement = buildStatement(sqlQuery, parameters)) {
@@ -43,34 +41,6 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
         } catch (SQLException exception) {
             throw new DAOException(exception.getMessage(), exception);
         }
-    }
-
-    private PreparedStatement buildStatement(String sqlQuery, List<String> parameters) throws DAOException {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-            if (parameters != null) {
-                int parameterIndex = 1;
-                for (String parameter : parameters) {
-                    preparedStatement.setObject(parameterIndex++, parameter);
-                }
-            }
-            return preparedStatement;
-        } catch (SQLException e) {
-            throw new DAOException(e.getMessage(), e);
-        }
-    }
-
-    private String generateValuesCount(int len) {
-        StringBuilder sb = new StringBuilder("( ");
-        for (int i = 0; i < len; i++) {
-            if (i < len - 1) {
-                sb.append("?, ");
-            } else {
-                sb.append("? ");
-            }
-        }
-        sb.append(")");
-        return sb.toString();
     }
 
     protected T getEntity(String sqlQuery, List<String> params) throws DAOException {
@@ -86,22 +56,51 @@ public abstract class AbstractDAO<T extends Entity> implements DAO<T> {
         }
     }
 
-    @Override //todio protected call prepareVakues
-    public Integer insert(T entity, String fields) throws DAOException {
-        List<String> params = getEntityParameters(entity);
-        String paramsCount = generateValuesCount(params.size());
-        String sqlQuery = String.format(INSERT_QUERY_KEY, tableName, fields, paramsCount);
-        boolean bool = executeQuery(sqlQuery, params);
-        return (bool) ? getLastInsertId() : null;
+    protected Connection getConnection() {
+        ConnectionManager cm = threadLocal.get();
+        if (cm != null) {
+            return cm.getConnection();
+        }
+        startTransaction();
+        return threadLocal.get().getConnection();
     }
 
-    @Override
-    public boolean update(T entity, String sqlQuery) throws DAOException {
+
+    protected Integer insert(T entity, String sqlQuery) throws DAOException {
         List<String> params = getEntityParameters(entity);
-        int entityId = entity.getId();
-        String id = String.valueOf(entityId);
-        params.add(id);
-        return executeQuery(sqlQuery, params);
+        executeQuery(sqlQuery, params);
+        return getLastInsertId();
     }
+
+    private int getLastInsertId() throws DAOException {
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT last_insert_id()");
+            if (resultSet.next()) {
+                return resultSet.getInt("last_insert_id()");
+            }
+            return 0;
+        } catch (SQLException exception) {
+            throw new DAOException(exception.getMessage(), exception);
+        }
+    }
+
+    private PreparedStatement buildStatement(String sqlQuery, List<String> parameters) throws DAOException {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            if (parameters != null) {
+                int parameterIndex = 1;
+                for (String parameter : parameters) {
+                    preparedStatement.setObject(parameterIndex++, parameter);
+                }
+            }
+            return preparedStatement;
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
+    }
+
 
 }

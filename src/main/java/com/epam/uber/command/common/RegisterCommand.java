@@ -42,7 +42,7 @@ public class RegisterCommand implements Command {
         }
 
         userService.registerUser(user);
-        return new Page(LOGIN_PAGE_PATH, false, SUCCESS_MESSAGE_KEY);
+        return new Page(LOGIN_PAGE_PATH, true, SUCCESS_MESSAGE_KEY);
 
     }
 

@@ -1,166 +1,161 @@
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:30:12 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:00 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:34:01 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 12:36:48 ERROR ProxyConnection:32 - Transaction commit failed. 
-java.sql.SQLException: Can''t call commit when autocommit=true
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:67)
-	at com.mysql.cj.jdbc.ConnectionImpl.commit(ConnectionImpl.java:785)
-	at com.epam.uber.pool.ProxyConnection.commitTransaction(ProxyConnection.java:30)
-	at com.epam.uber.service.OrderServiceImpl.registerOrder(OrderServiceImpl.java:55)
-	at com.epam.uber.command.client.OrderCommand.execute(OrderCommand.java:28)
-	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
-	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:51 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:43:52 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 12:45:07 ERROR FrontController:56 - Exception during selectAll taxis according to his firstname operation name =[ziad]
-com.epam.uber.exceptions.ServiceException: Exception during selectAll taxis according to his firstname operation name =[ziad]
-	at com.epam.uber.service.TaxiServiceImpl.findTaxiByName(TaxiServiceImpl.java:35)
-	at com.epam.uber.command.admin.FindTaxisCommand.execute(FindTaxisCommand.java:22)
-	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
-	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: com.epam.uber.exceptions.DAOException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''ziad' at line 1
-	at com.epam.uber.dao.impl.TaxiDaoImpl.selectAll(TaxiDaoImpl.java:63)
-	at com.epam.uber.dao.impl.TaxiDaoImpl.selectAllTaxiByName(TaxiDaoImpl.java:49)
-	at com.epam.uber.service.TaxiServiceImpl.findTaxiByName(TaxiServiceImpl.java:33)
-	... 27 more
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''ziad' at line 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 19:39:36 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-12 20:43:03 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 20:43:04 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:38:06 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 21:59:55 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-12 22:00:23 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 13:01:26 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:40:30 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 14:40:30 ERROR ConnectionManager:23 - Transaction rollback failed. 
+java.sql.SQLNonTransientConnectionException: Can''t call rollback when autocommit=true
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110)
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1200)
-	at com.epam.uber.dao.impl.TaxiDaoImpl.selectAll(TaxiDaoImpl.java:56)
-	... 29 more
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:48:23 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 12:51:47 ERROR FrontController:56 - Exception during user register operation user = [Entity{id=-1}]
-com.epam.uber.exceptions.ServiceException: Exception during user register operation user = [Entity{id=-1}]
-	at com.epam.uber.service.UserServiceImpl.registerUser(UserServiceImpl.java:104)
-	at com.epam.uber.command.common.RegisterCommand.execute(RegisterCommand.java:44)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.ConnectionImpl.rollback(ConnectionImpl.java:1831)
+	at com.epam.uber.pool.ConnectionManager.rollbackTransaction(ConnectionManager.java:21)
+	at com.epam.uber.dao.AbstractDAO.rollbackTransaction(AbstractDAO.java:27)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:35)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
 	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
 	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
@@ -168,6 +163,9 @@ com.epam.uber.exceptions.ServiceException: Exception during user register operat
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
@@ -187,14 +185,203 @@ com.epam.uber.exceptions.ServiceException: Exception during user register operat
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-Caused by: com.epam.uber.exceptions.DAOException: Column count doesn't match value count at row 1
-	at com.epam.uber.dao.AbstractDAO.executeQuery(AbstractDAO.java:44)
-	at com.epam.uber.dao.AbstractDAO.insert(AbstractDAO.java:94)
-	at com.epam.uber.dao.impl.UserDAOImpl.insertUser(UserDAOImpl.java:66)
-	at com.epam.uber.service.UserServiceImpl.registerUser(UserServiceImpl.java:102)
-	... 27 more
-Caused by: java.sql.SQLException: Column count doesn't match value count at row 1
+2019-10-15 14:40:30 ERROR FrontController:56 - Exception during user login operation login = [hadibaub]
+com.epam.uber.exceptions.ServiceException: Exception during user login operation login = [hadibaub]
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:36)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
+	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
+	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: com.epam.uber.exceptions.DAOException: Parameter index out of range (6 > number of parameters, which is 5).
+	at com.epam.uber.dao.AbstractDAO.buildStatement(AbstractDAO.java:103)
+	at com.epam.uber.dao.AbstractDAO.executeQuery(AbstractDAO.java:45)
+	at com.epam.uber.dao.impl.UserDAOImpl.login(UserDAOImpl.java:22)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:19)
+	... 30 more
+Caused by: java.sql.SQLException: Parameter index out of range (6 > number of parameters, which is 5).
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.checkBounds(ClientPreparedStatement.java:1365)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.getCoreParameterIndex(ClientPreparedStatement.java:1378)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.setObject(ClientPreparedStatement.java:1662)
+	at com.epam.uber.dao.AbstractDAO.buildStatement(AbstractDAO.java:97)
+	... 33 more
+2019-10-15 14:42:24 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:42:25 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 14:55:36 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 14:55:36 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM user WHERE 'login'='password' AND 'hadibaub'='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' AND status !='deleted' 
+2019-10-15 15:07:25 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM user WHERE 'login'='password' AND 'hadibaub'='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' AND status !='deleted' 
+2019-10-15 15:08:26 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:08:27 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 15:08:27 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM user WHERE login='hadibaub' AND password='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' AND status !='deleted' 
+2019-10-15 15:08:27 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: insert into location ('country','zone','city') values ('Belarus','19','Minsk')
+2019-10-15 15:08:27 ERROR ConnectionManager:23 - Transaction rollback failed. 
+java.sql.SQLNonTransientConnectionException: Can''t call rollback when autocommit=true
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.ConnectionImpl.rollback(ConnectionImpl.java:1831)
+	at com.epam.uber.pool.ConnectionManager.rollbackTransaction(ConnectionManager.java:21)
+	at com.epam.uber.dao.AbstractDAO.rollbackTransaction(AbstractDAO.java:30)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:35)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
+	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
+	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2019-10-15 15:08:27 ERROR FrontController:56 - Exception during user login operation login = [hadibaub]
+com.epam.uber.exceptions.ServiceException: Exception during user login operation login = [hadibaub]
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:36)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
+	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
+	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: com.epam.uber.exceptions.DAOException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''country','zone','city') values ('Belarus','19','Minsk')' at line 1
+	at com.epam.uber.dao.AbstractDAO.executeUpdate(AbstractDAO.java:43)
+	at com.epam.uber.dao.AbstractDAO.insert(AbstractDAO.java:73)
+	at com.epam.uber.dao.impl.LocationDAOImpl.insertLocation(LocationDAOImpl.java:18)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:30)
+	... 30 more
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''country','zone','city') values ('Belarus','19','Minsk')' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
@@ -202,131 +389,139 @@ Caused by: java.sql.SQLException: Column count doesn't match value count at row 
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1340)
 	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
-	at com.epam.uber.dao.AbstractDAO.executeQuery(AbstractDAO.java:41)
+	at com.epam.uber.dao.AbstractDAO.executeUpdate(AbstractDAO.java:41)
+	... 33 more
+2019-10-15 15:19:48 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: SELECT * FROM user WHERE login='hadibaub' AND password='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' AND status !='deleted' 
+2019-10-15 15:19:48 ERROR AbstractDAO:104 - com.mysql.cj.jdbc.ClientPreparedStatement: insert into location ('country','zone','city') values ('Belarus','11','Minsk')
+2019-10-15 15:19:48 ERROR ConnectionManager:23 - Transaction rollback failed. 
+java.sql.SQLNonTransientConnectionException: Can''t call rollback when autocommit=true
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
+	at com.mysql.cj.jdbc.ConnectionImpl.rollback(ConnectionImpl.java:1831)
+	at com.epam.uber.pool.ConnectionManager.rollbackTransaction(ConnectionManager.java:21)
+	at com.epam.uber.dao.AbstractDAO.rollbackTransaction(AbstractDAO.java:30)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:35)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
+	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
+	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2019-10-15 15:19:48 ERROR FrontController:56 - Exception during user login operation login = [hadibaub]
+com.epam.uber.exceptions.ServiceException: Exception during user login operation login = [hadibaub]
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:36)
+	at com.epam.uber.command.common.LoginCommand.execute(LoginCommand.java:23)
+	at com.epam.uber.controller.FrontController.process(FrontController.java:48)
+	at com.epam.uber.controller.FrontController.doPost(FrontController.java:34)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.epam.uber.filter.CommandFilter.doFilter(CommandFilter.java:62)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:678)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: com.epam.uber.exceptions.DAOException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''country','zone','city') values ('Belarus','11','Minsk')' at line 1
+	at com.epam.uber.dao.AbstractDAO.executeUpdate(AbstractDAO.java:43)
+	at com.epam.uber.dao.AbstractDAO.insert(AbstractDAO.java:73)
+	at com.epam.uber.dao.impl.LocationDAOImpl.insertLocation(LocationDAOImpl.java:18)
+	at com.epam.uber.service.UserServiceImpl.login(UserServiceImpl.java:30)
 	... 30 more
-2019-10-12 12:54:36 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 12:54:37 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:26:05 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:30:27 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:33:18 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 13:39:15 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:39:16 INFO  ConnectionCreator:43 - Pool was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:50 - Driver was registered successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:72 - Connection was created successful.
-2019-10-12 13:43:43 INFO  ConnectionCreator:43 - Pool was created successful.
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''country','zone','city') values ('Belarus','11','Minsk')' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1340)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
+	at com.epam.uber.dao.AbstractDAO.executeUpdate(AbstractDAO.java:41)
+	... 33 more
+2019-10-15 15:20:20 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:20:21 INFO  ConnectionCreator:43 - Pool was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:50 - Driver was registered successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:72 - Connection was created successful.
+2019-10-15 15:29:55 INFO  ConnectionCreator:43 - Pool was created successful.

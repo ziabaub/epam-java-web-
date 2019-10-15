@@ -12,6 +12,16 @@
         <servlet-name>controller</servlet-name>
         <servlet-class>com.epam.uber.controller.FrontController</servlet-class>
     </servlet>
+    
+    <filter>
+        <filter-name>commandFilter</filter-name>
+        <filter-class>com.epam.uber.filter.CommandFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>commandFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <servlet-mapping>
         <servlet-name>controller</servlet-name>

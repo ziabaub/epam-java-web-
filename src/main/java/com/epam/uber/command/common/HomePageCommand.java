@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 public class HomePageCommand implements Command {
 
     public Page execute(HttpServletRequest request) {
-        System.out.println("hisos");
         return new Page(Page.MAIN_PAGE_PATH, false);
     }
 

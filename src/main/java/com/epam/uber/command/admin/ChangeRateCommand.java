@@ -19,7 +19,7 @@ public class ChangeRateCommand implements Command {
         double rate = Double.parseDouble(request.getParameter("rate"));
         Tariff tariff = new Tariff(rate);
         tariffService.insertEntity(tariff);
-        return new Page(EDIT_RATE_PAGE_PATH, false, SUCCESS_MESSAGE_KEY);
+        return new Page(EDIT_RATE_PAGE_PATH, true, SUCCESS_MESSAGE_KEY);
     }
 
 }

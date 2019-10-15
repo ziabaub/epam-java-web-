@@ -20,13 +20,6 @@ import java.util.*;
 public class OrderDAOImpl extends AbstractDAO<Order> {
 
 
-    private final Connection connection;
-
-    public OrderDAOImpl(Connection connection) {
-        super(connection, "journey");
-        this.connection = connection;
-    }
-
     public void updateOrder(Order order) throws DAOException {
         String sqlQuery = "UPDATE journey SET taxi_id=? ,status=? WHERE id=?";
         String taxiId = String.valueOf(order.getTaxiId());
@@ -48,7 +41,7 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
     }
 
     public int insertOrder(Order order) throws DAOException {
-        String fields = "(date, customer_id, tariff_id,from_location_id, to_location_id, cost, status)";
+        String fields = "insert into journey (date, customer_id, tariff_id,from_location_id, to_location_id, cost, status) values(?,?,?,?,?,?,?)";
         return insert(order, fields);
     }
 
@@ -72,6 +65,7 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
                 .append(condition)
                 .append(" order by date");
         try {
+            Connection connection = getConnection();
             Statement statement = connection.createStatement();
             List<OrderInfo> orders = new ArrayList<>();
             ResultSet result = statement.executeQuery(sqlQuery.toString());
@@ -93,7 +87,7 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
     }
 
     @Override
-    public List<String> getEntityParameters(Order entity) {
+    protected List<String> getEntityParameters(Order entity) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(new Date());
         String costumerId = String.valueOf(entity.getCostumerId());
@@ -103,11 +97,11 @@ public class OrderDAOImpl extends AbstractDAO<Order> {
         String cost = String.valueOf(entity.getCost());
         String status = entity.getStatus();
 
-        return new ArrayList<>(Arrays.asList(date, costumerId, tariffId, from, to, cost, status));
+        return Arrays.asList(date, costumerId, tariffId, from, to, cost, status);
     }
 
     @Override
-    public Order buildEntity(ResultSet result) throws DAOException {
+    protected Order buildEntity(ResultSet result) throws DAOException {
         try {
             Order order = new Order();
             int id = result.getInt(ID_COLUMN_LABEL);

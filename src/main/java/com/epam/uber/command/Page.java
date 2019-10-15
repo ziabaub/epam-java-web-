@@ -29,8 +29,6 @@ public class Page {
     public static final String EDIT_RATE_PAGE_PATH = "/pages/admin/editRate.jsp";
     public static final String RATE_HISTORY_PAGE_PATH = "/pages/admin/rateHistory.jsp";
 
-    public static final String ERROR_PAGE_PATH = "/pages/common/error.jsp";
-
     private final String pageUrl;
     private final boolean isRedirect;
     private final String messageKey;

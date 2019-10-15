@@ -25,7 +25,7 @@ public class LoginCommand implements Command {
             return new Page(Page.LOGIN_PAGE_PATH, false, LOGIN_ERROR_MESSAGE_KEY);
         }
         currentSession.setAttribute(USER_ATTRIBUTE, user);
-        return new Page(Page.MAIN_PAGE_PATH, false);
+        return new Page(Page.MAIN_PAGE_PATH, true);
 
     }
 

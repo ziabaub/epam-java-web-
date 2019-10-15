@@ -44,8 +44,8 @@ public class FrontController extends HttpServlet {
     private void process(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
             CommandFactory commandFactory = new CommandFactory();
-            Command action = commandFactory.getCommand(req);
-            Page page = action.execute(req);
+            Command command = commandFactory.getCommand(req);
+            Page page = command.execute(req);
             boolean isRedirect = page.isRedirect();
             if (isRedirect) {
                 redirect(page, req, resp);

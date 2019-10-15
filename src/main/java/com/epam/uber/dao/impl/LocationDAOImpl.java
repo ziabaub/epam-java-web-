@@ -4,10 +4,8 @@ import com.epam.uber.dao.AbstractDAO;
 import com.epam.uber.entity.order.Location;
 import com.epam.uber.exceptions.DAOException;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,13 +13,9 @@ import java.util.List;
 public class LocationDAOImpl extends AbstractDAO<Location> {
 
 
-    public LocationDAOImpl(Connection connection) {
-        super(connection, "location");
-    }
-
     public int insertLocation(Location location) throws DAOException {
-        String fields = "(country,city,zone)";
-        return insert(location, fields);
+        String query = "insert into location (country,city,zone) values (?,?,?)";
+        return insert(location, query);
     }
 
     public void deleteById(int id) throws DAOException {
@@ -31,16 +25,16 @@ public class LocationDAOImpl extends AbstractDAO<Location> {
     }
 
     @Override
-    public List<String> getEntityParameters(Location entity) {
+    protected List<String> getEntityParameters(Location entity) {
         String country = entity.getCountry();
         String city = entity.getCity();
         String zone = String.valueOf(entity.getZone());
 
-        return new ArrayList<>(Arrays.asList(country, city, zone));
+        return Arrays.asList(country, city, zone);
     }
 
     @Override
-    public Location buildEntity(ResultSet result) throws DAOException {
+    protected Location buildEntity(ResultSet result) throws DAOException {
         try {
             int id = result.getInt(ID_COLUMN_LABEL);
             String country = result.getString("country");

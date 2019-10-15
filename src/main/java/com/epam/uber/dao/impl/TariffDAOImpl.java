@@ -12,16 +12,13 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class TariffDAOImpl extends AbstractDAO<Tariff> {
 
-    private final Connection connection;
-
-    public TariffDAOImpl(Connection connection) {
-        super(connection, "tariff");
-        this.connection = connection;
-    }
 
     public Tariff getCurrTariff() throws DAOException {
         String sqlQuery = "SELECT * FROM tariff ORDER BY id DESC LIMIT 1";
@@ -30,6 +27,7 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
 
     private Tariff getRate(String sqlQuery) throws DAOException {
         try {
+            Connection connection = getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             if (resultSet.next()) {
@@ -43,17 +41,18 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
     }
 
     public void insertTariff(Tariff tariff) throws DAOException {
-        String fields = "(start_time, rate)";
+        String fields = "insert into tariff (start_time, rate) values(?,?)";
         insert(tariff, fields);
     }
 
-    public List<Tariff> selectAllTariff()throws DAOException  {
+    public List<Tariff> selectAllTariff() throws DAOException {
         String sqlQuery = "select * from tariff ";
         try {
+            Connection connection = getConnection();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(sqlQuery);
             List<Tariff> tariffs = new ArrayList<>();
-            while (result.next()){
+            while (result.next()) {
                 Tariff tariff = buildEntity(result);
                 tariffs.add(tariff);
             }
@@ -64,17 +63,17 @@ public class TariffDAOImpl extends AbstractDAO<Tariff> {
     }
 
     @Override
-    public List<String> getEntityParameters(Tariff entity) {
+    protected List<String> getEntityParameters(Tariff entity) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
 
         String start = entity.getStart().format(formatter);
         String rate = String.valueOf(entity.getRate());
 
-        return new ArrayList<>(Arrays.asList(start, rate));
+        return Arrays.asList(start, rate);
     }
 
     @Override
-    public Tariff buildEntity(ResultSet result) throws DAOException {
+    protected Tariff buildEntity(ResultSet result) throws DAOException {
         try {
             int id = result.getInt(ID_COLUMN_LABEL);
             Date date = result.getDate("start_time");

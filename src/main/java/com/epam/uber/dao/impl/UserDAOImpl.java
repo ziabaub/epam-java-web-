@@ -4,21 +4,13 @@ import com.epam.uber.dao.AbstractDAO;
 import com.epam.uber.entity.user.User;
 import com.epam.uber.exceptions.DAOException;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class UserDAOImpl extends AbstractDAO<User> {
-
-
-    public UserDAOImpl(Connection connection) {
-        super(connection, "user");
-    }
-
 
     public User login(String login, String password) throws DAOException {
         String sqlQuery = "SELECT * FROM user WHERE login=? AND password=? AND status !='deleted' ";
@@ -30,7 +22,7 @@ public class UserDAOImpl extends AbstractDAO<User> {
         String sqlQuery = "UPDATE user SET status=? WHERE id=?";
         String status = user.getStatus();
         String id = String.valueOf(user.getId());
-        List<String> params = Arrays.asList( status, id);
+        List<String> params = Arrays.asList(status, id);
         executeQuery(sqlQuery, params);
     }
 
@@ -61,9 +53,9 @@ public class UserDAOImpl extends AbstractDAO<User> {
         return getEntity(sqlQuery, params) == null;
     }
 
-    public int insertUser(User user) throws DAOException {
-        String fields = "(location ,firstname, lastname ,login, password, email, phone, role, status)";
-        return insert(user, fields);
+    public void insertUser(User user) throws DAOException {
+        String fields = "insert into user (location ,firstname, lastname ,login, password, email, phone, role, status) values(?,?,?,?,?,?,?,?,?)";
+        insert(user, fields);
     }
 
     public void deleteUserById(int id) throws DAOException {
@@ -73,7 +65,7 @@ public class UserDAOImpl extends AbstractDAO<User> {
     }
 
     @Override
-    public List<String> getEntityParameters(User entity) {
+    protected List<String> getEntityParameters(User entity) {
 
         String location = String.valueOf(entity.getLocation());
         String firstName = entity.getFirstName();
@@ -84,11 +76,11 @@ public class UserDAOImpl extends AbstractDAO<User> {
         String phone = entity.getPhone();
         String role = entity.getRole();
         String status = entity.getStatus();
-        return new ArrayList<>(Arrays.asList(location , firstName, lastName, login, password, email, phone, role, status));
+        return Arrays.asList(location, firstName, lastName, login, password, email, phone, role, status);
     }
 
     @Override
-    public User buildEntity(ResultSet result) throws DAOException {
+    protected User buildEntity(ResultSet result) throws DAOException {
         try {
             User user = new User();
             int id = result.getInt(ID_COLUMN_LABEL);

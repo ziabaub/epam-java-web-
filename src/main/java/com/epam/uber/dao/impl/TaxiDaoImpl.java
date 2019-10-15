@@ -12,12 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaxiDaoImpl extends AbstractDAO<UserTaxi> {
-    private final Connection connection;
-
-    public TaxiDaoImpl(Connection connection) {
-        super(connection, "taxi");
-        this.connection = connection;
-    }
 
     public List<UserTaxi> selectAllTaxi() throws DAOException {
         StringBuilder sqlQuery =
@@ -38,6 +32,7 @@ public class TaxiDaoImpl extends AbstractDAO<UserTaxi> {
 
     private List<UserTaxi> selectAll(StringBuilder sqlQuery) throws DAOException {
         try {
+            Connection connection = getConnection();
             Statement statement = connection.createStatement();
             List<UserTaxi> taxis = new ArrayList<>();
             ResultSet result = statement.executeQuery(sqlQuery.toString());
@@ -52,12 +47,12 @@ public class TaxiDaoImpl extends AbstractDAO<UserTaxi> {
     }
 
     @Override
-    public List<String> getEntityParameters(UserTaxi entity) {
+    protected List<String> getEntityParameters(UserTaxi entity) {
         return new ArrayList<>();
     }
 
     @Override
-    public UserTaxi buildEntity(ResultSet result) throws DAOException {
+    protected UserTaxi buildEntity(ResultSet result) throws DAOException {
         try {
             int id = result.getInt("id");
             String firstName = result.getString("firstname");
