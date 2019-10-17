@@ -8,7 +8,7 @@ public class PasswordEncoder {
     }
 
     public static String encode(String password) {
-        return DigestUtils.sha256Hex(password);
+        return DigestUtils.md5Hex(password);
     }
 
 }
