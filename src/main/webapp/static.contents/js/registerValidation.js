@@ -3,7 +3,6 @@ let firstNameChecked = false;
 let lastNameChecked = false;
 let loginChecked = false;
 let phoneChecked = false;
-let roleChecked = false;
 
 let phoneRegex = /\((17|29|33|44)\)[0-9]{8}/;
 let logRegEx = /\W/;
@@ -24,10 +23,9 @@ let firstName = document.getElementById("first_name");
 let lastName = document.getElementById("last_name");
 let login = document.getElementById("login");
 let email = document.getElementById("email");
-let role = document.getElementById("role");
 
 let submitChange = function () {
-    if (firstNameChecked && lastNameChecked && passChecked && loginChecked && phoneChecked && roleChecked) {
+    if (firstNameChecked && lastNameChecked && passChecked && loginChecked && phoneChecked) {
         submit.disabled = false;
         submit.classList.add("active");
     } else {
@@ -59,18 +57,6 @@ let checkPassword = function () {
     } else {
         setBackgroundFieldRed(confirmPassword);
         passChecked = false;
-    }
-    submitChange();
-};
-
-let checkRole = function () {
-    let roles = ['admin', 'client', 'taxi'];
-    if (roles.includes(role.value)){
-        setBackgroundFieldGreen(role);
-        roleChecked = true;
-    } else {
-        setBackgroundFieldRed(role);
-        roleChecked = false;
     }
     submitChange();
 };
@@ -134,6 +120,6 @@ function checkPhone() {
         phoneChecked = true;
     }
     submitChange();
-};
+}
 
 

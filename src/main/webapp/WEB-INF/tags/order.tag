@@ -27,14 +27,37 @@
     <div>
         <form name="orderForm" method="POST" action="${pageContext.request.contextPath}/controller">
             <input type="hidden" name="command" value="client_order"/>
-            <p><input id = "to" class="log_input" type="text" name="to" placeholder="${pageScope.to}" value="" onkeyup="checkTo()"/></p>
-            <p><textarea class="log_input" name="note" placeholder="${pageScope.message}" style="resize: none" rows="3"></textarea></p>
-            <input  id="submit" class="log_button" type="submit" value="${pageScope.send}" disabled/>
+            <p><label>
+                <select name="city" class="log_input" required >
+                    <option>Tashkenetot</option>
+                    <option>Dolginovskiy</option>
+                    <option>Kopische</option>
+                    <option>Factory</option>
+                    <option>Odoevskogo</option>
+                    <option>Tomsoklo</option>
+                    <option>Komarovskoye</option>
+                    <option>Tashkent</option>
+                    <option>viaduct</option>
+                    <option>Logoiski</option>
+                    <option>Tomsk</option>
+                    <option>Tashkent</option>
+                    <option>Dolginovskiy</option>
+                    <option>Kopische</option>
+                    <option>Voronianskogo</option>
+                    <option>Tashkent</option>
+                    <option>viaduct</option>
+                    <option>Logoiski</option>
+                    <option>Tomsk</option>
+                    <option>Odoevskogo</option>
+                    <option>Voronianskogo</option>
+                </select>
+            </label></p>
+            <p><label>
+                <textarea class="log_input" name="note" placeholder="${pageScope.message}" style="resize: none" rows="3"></textarea>
+            </label></p>
+            <input  id="submit" class="log_button" type="submit" value="${pageScope.send}" />
         </form>
     </div>
 </div>
-<script>
-<jsp:directive.include file="/static.contents/js/orderValidator.js"/>
-</script>
 
 

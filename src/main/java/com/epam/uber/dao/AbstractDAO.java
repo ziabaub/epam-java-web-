@@ -10,7 +10,7 @@ import java.util.List;
 public abstract class AbstractDAO<T extends Entity> {
 
     protected static final String ID_COLUMN_LABEL = "id";
-    private static ThreadLocal<ConnectionManager> threadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<ConnectionManager> threadLocal = new ThreadLocal<>();
 
 
 
@@ -34,10 +34,9 @@ public abstract class AbstractDAO<T extends Entity> {
 
     protected abstract T buildEntity(ResultSet result) throws DAOException;
 
-    protected boolean executeQuery(String sqlQuery, List<String> parameters) throws DAOException {
+    protected void executeQuery(String sqlQuery, List<String> parameters) throws DAOException {
         try (PreparedStatement preparedStatement = buildStatement(sqlQuery, parameters)) {
-            int queryResult = preparedStatement.executeUpdate();
-            return queryResult != 0;
+            preparedStatement.executeUpdate();
         } catch (SQLException exception) {
             throw new DAOException(exception.getMessage(), exception);
         }

@@ -14,10 +14,10 @@ import java.util.EnumSet;
 import static com.epam.uber.command.Command.USER_ATTRIBUTE;
 
 public class CommandFilter implements Filter {
-    private EnumSet<CommandType> adminCommand = EnumSet.range(CommandType.SHOW_TAXIS, CommandType.RATE_HISTORY);
-    private EnumSet<CommandType> commonCommand = EnumSet.range(CommandType.COMMON_LOGIN, CommandType.COMMON_CHANGE_LANGUAGE);
-    private EnumSet<CommandType> taxiCommand = EnumSet.range(CommandType.DISPATCHER, CommandType.HISTORY);
-    private EnumSet<CommandType> clientCommand = EnumSet.range(CommandType.CLIENT_ORDER, CommandType.CANCEL_ORDER);
+    private final EnumSet<CommandType> adminCommand = EnumSet.range(CommandType.SHOW_TAXIS, CommandType.RATE_HISTORY);
+    private final EnumSet<CommandType> commonCommand = EnumSet.range(CommandType.COMMON_LOGIN, CommandType.COMMON_CHANGE_LANGUAGE);
+    private final EnumSet<CommandType> taxiCommand = EnumSet.range(CommandType.DISPATCHER, CommandType.HISTORY);
+    private final EnumSet<CommandType> clientCommand = EnumSet.range(CommandType.CLIENT_ORDER, CommandType.CANCEL_ORDER);
 
     @Override
     public void init(FilterConfig fConfig) {

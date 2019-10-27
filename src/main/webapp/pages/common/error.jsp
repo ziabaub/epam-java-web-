@@ -17,19 +17,12 @@
     <title>${pageScope.title}</title>
 </head>
 <body class="page">
-<h1>Opps...</h1>
+<h1>Oops...</h1>
 <p class="error_wrapper">
 <p>${pageScope.exception_message} ${pageContext.errorData.throwable}</p>
 <p>${pageScope.request_message} ${pageContext.errorData.requestURI} is failed</p>
 <p>${pageScope.servlet_message} ${pageContext.errorData.servletName}</p>
 <p>${pageScope.status_message} ${pageContext.errorData.statusCode}</p>
 
-<%--    <p>Stack trace:</p>--%>
-<%--    <c:forEach var = "trace"--%>
-<%--               items = "${pageContext.exception.stackTrace}">--%>
-<%--        <p>${trace}</p>--%>
-<%--    </c:forEach>--%>
-</div>
 </body>
-
 </html>

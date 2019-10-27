@@ -101,9 +101,7 @@
                         </form>
                     </li>
                 </c:when>
-                <c:otherwise>
 
-            </c:otherwise>
             </c:choose>
         </c:if>
     </ul>

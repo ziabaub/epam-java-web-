@@ -6,11 +6,11 @@ public abstract class Entity {
 
     private int id;
 
-    public Entity() {
+    protected Entity() {
         this.id = -1;
     }
 
-    public Entity(int id) {
+    protected Entity(int id) {
         this.id = id;
     }
 

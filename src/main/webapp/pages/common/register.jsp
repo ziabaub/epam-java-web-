@@ -62,8 +62,11 @@
                    onkeyup="checkPhone();"/>
         </p>
         <p><span>${pageScope.role}</span>
-            <input id="role" title="${pageScope.role}" type="text" name="role" value="" placeholder="admin , client , taxi"
-            onkeyup="checkRole()"/>
+            <select title="${pageScope.role}" name="role" required>
+                <option>admin</option>
+                <option>client</option>
+                <option>taxi</option>
+            </select>
         </p>
         <input class="reg_submit" id="submit" type="submit" value="${pageScope.register_submit}" disabled/>
     </form>
